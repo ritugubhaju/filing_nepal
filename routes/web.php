@@ -89,9 +89,13 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     });
 
 
-    Route::group(['as'=>'common.', 'prefix'=>'common'], function(){
-        Route::post('provinces', 'Common\CommonController@getProvincesByCountryId')->name('province.countryId');
-        Route::post('districts', 'Common\CommonController@getDistrictsByProvinceId')->name('district.provinceId');
+    Route::group(['as' => 'category.', 'prefix' => 'category',], function () {
+        Route::get('', 'ServiceCategory\ServiceCategoryController@index')->name('index');
+        Route::get('create', 'ServiceCategory\ServiceCategoryController@create')->name('create');
+        Route::post('', 'ServiceCategory\ServiceCategoryController@store')->name('store');
+        Route::get('{category}/edit', 'ServiceCategory\ServiceCategoryController@edit')->name('edit');
+        Route::put('{category}', 'ServiceCategory\ServiceCategoryController@update')->name('update');
+        Route::get('category/{id}/destroy', 'ServiceCategory\ServiceCategoryController@destroy')->name('destroy');
     });
 
 

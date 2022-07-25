@@ -26,6 +26,18 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow" aria-expanded="false">
+                        <i class="mdi mdi-share-variant"></i>
+                        <span>Service</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="true">
+                        <li><a href="{{ route('category.index')}}" aria-expanded="false"><i class="fas fa-user"></i></i> Service Category</a></li>
+                        <li><a href="{{ route('role.index')}}" aria-expanded="false"><i class="fa fa-tasks"></i> Roles</a></li>
+                        <li><a href="{{ route('permission.index')}}" aria-expanded="false"><i class="fa fa-lock"></i> Permissions</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
