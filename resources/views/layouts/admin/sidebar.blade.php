@@ -27,15 +27,21 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow" aria-expanded="false">
-                        <i class="mdi mdi-share-variant"></i>
-                        <span>Service</span>
+                    <a href="{{ route('category.index')}}" aria-expanded="false">
+                        <i class="fas fa-layer-group"></i></i> Service Category
                     </a>
-                    <ul class="sub-menu mm-collapse" aria-expanded="true">
-                        <li><a href="{{ route('category.index')}}" aria-expanded="false"><i class="fas fa-user"></i></i> Service Category</a></li>
-                        <li><a href="{{ route('role.index')}}" aria-expanded="false"><i class="fa fa-tasks"></i> Roles</a></li>
-                        <li><a href="{{ route('permission.index')}}" aria-expanded="false"><i class="fa fa-lock"></i> Permissions</a></li>
-                    </ul>
+                </li>
+
+                <li>
+                    <a href="{{ route('service.index')}}" aria-expanded="false">
+                        <i class="fas fa-boxes"></i></i> Service
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('client.index')}}" aria-expanded="false">
+                        <i class="fas fa-user"></i></i> Client
+                    </a>
                 </li>
 
             </ul>

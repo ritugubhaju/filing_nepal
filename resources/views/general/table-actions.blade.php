@@ -20,9 +20,9 @@
 
 @if(!empty($deleteRoute))
     {{-- <a href="{{$deleteRoute}}"> --}}
-        <button type="button" class="btn btn-icon-toggle" onclick="deleteThis(this); return false;" link="{{$deleteRoute}}">
-            <i class="far fa-trash-alt"></i>
-        </button>
+    <button type="button" class="btn btn-icon-toggle" onclick="deleteThis(this); return false;" link="{{$deleteRoute}}">
+        <i class="far fa-trash-alt"></i>
+    </button>
     {{-- </a> --}}
 @endif
 

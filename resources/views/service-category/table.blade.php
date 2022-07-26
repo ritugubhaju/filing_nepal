@@ -8,15 +8,15 @@
     {{'Inactive'}}
     @endif
     </td>
-    <td class="text-right">
-        <a href="{{route('category.edit', $category->slug)}}" class="btn btn-flat btn-primary btn-xs" title="edit">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a href="{{ route('category.destroy', $category->id) }}">
-            <button type="button"
-                class="btn btn-flat btn-danger btn-xs item-delename="delete">
-                <i class="glyphicon glyphicon-trash"></i>
+    <td>
+        <a href="{{route('category.edit', $category->slug)}}">
+            <button type="button" class="btn btn-icon-toggle btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Edit"><i class="mdi mdi-pencil"></i>
             </button>
+        </a>
+
+        <button type="button" onclick="deleteThis(this); return false;" link="{{ route('category.destroy', $category->id) }}" class="btn btn-icon-toggle btn-sm" data-toggle="tooltip" data-placement="top" data-original-title="Delete"><i class="far fa-trash-alt"></i>
+        </button>
+       
     </td>
 </tr>
 

@@ -35,17 +35,13 @@
         <script src="{{asset('js/jquery.repeater.min.js')}}"></script>
 
         <script src="{{asset('js/form-repeater.init.js')}}"></script>
-
-        {{-- <script>
-            $(function () {
-                $('.my-ckeditor').each(function (e) {
-                    CKEDITOR.replace(this.id, {
-                        filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                        filebrowserUploadMethod: 'form'
-                    });
-                });
-            });
-        </script> --}}
+        <script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
+        <script>
+			$(function () {
+				$('.ckeditor').each(function (e) {
+				});
+			});
+		</script>
 
         <script>
             function deleteThis(obj) {

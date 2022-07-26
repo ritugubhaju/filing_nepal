@@ -98,5 +98,23 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::get('category/{id}/destroy', 'ServiceCategory\ServiceCategoryController@destroy')->name('destroy');
     });
 
+    Route::group(['as' => 'service.', 'prefix' => 'service',], function () {
+        Route::get('', 'Service\ServiceController@index')->name('index');
+        Route::get('create', 'Service\ServiceController@create')->name('create');
+        Route::post('', 'Service\ServiceController@store')->name('store');
+        Route::get('{service}/edit', 'Service\ServiceController@edit')->name('edit');
+        Route::put('{service}', 'Service\ServiceController@update')->name('update');
+        Route::get('service/{id}/destroy', 'Service\ServiceController@destroy')->name('destroy');
+    });
+
+    Route::group(['as' => 'client.', 'prefix' => 'client',], function () {
+        Route::get('', 'Client\ClientController@index')->name('index');
+        Route::get('create', 'Client\ClientController@create')->name('create');
+        Route::post('', 'Client\ClientController@store')->name('store');
+        Route::get('{client}/edit', 'Client\ClientController@edit')->name('edit');
+        Route::put('{client}', 'Client\ClientController@update')->name('update');
+        Route::get('client/{id}/destroy', 'Client\ClientController@destroy')->name('destroy');
+    });
+
 
 });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceCategory\ServiceCategoryRequest;
 use App\Modules\Models\ServiceCategory\ServiceCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ServiceCategoryController extends Controller
 {
@@ -39,8 +40,8 @@ class ServiceCategoryController extends Controller
         if ($category = $this->category->create($request->data())) {
 
         }
-
-        return redirect()->route('category.index')->withSuccess(trans('New News has been created'));
+        Toastr()->success('Category Added Successfully.','Success');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -55,8 +56,11 @@ class ServiceCategoryController extends Controller
     public function update(ServiceCategoryRequest $request, ServiceCategory $category)
     {
         if ($category->update($request->data())) {
-
-            return redirect()->route('category.index')->withSuccess(trans('category has been updated'));
+            $category->fill([
+                'slug' => Str::slug($request->title),
+            ])->save();
+            Toastr()->success('Category Updated Successfully.','Success');
+            return redirect()->route('category.index');
 
         }
 
@@ -66,7 +70,8 @@ class ServiceCategoryController extends Controller
     {
         $category = $this->category->find($id);
         $category->delete();
-        return redirect()->route('category.index')->withSuccess(trans('category has been deleted'));
+        Toastr()->success('Category Deleted Successfully.','Success');
+        return redirect()->route('category.index');
     }
 }
 
