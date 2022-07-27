@@ -14,13 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect(route('login'));
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/birthday', [App\Http\Controllers\HomeController::class, 'birthdayNotification'])->name('birthday');
 
 Route::group(['as' => 'user.','namespace' => 'App\Http\Controllers', 'prefix' => 'user',], function () {
     Route::get('forget-password', 'User\UserController@forgetPassword')->name('forgetPassword');
@@ -116,5 +115,17 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::get('client/{id}/destroy', 'Client\ClientController@destroy')->name('destroy');
     });
 
+    Route::group(['as' => 'menu.', 'prefix' => 'menu',], function () {
+        Route::get('', 'Menu\MenuController@index')->name('index');
+        Route::get('create', 'Menu\MenuController@create')->name('create');
+        Route::post('', 'Menu\MenuController@store')->name('store');
+        Route::get('{menu}/edit', 'Menu\MenuController@edit')->name('edit');
+        Route::put('{menu}', 'Menu\MenuController@update')->name('update');
+        Route::get('menu/{id}/destroy', 'Menu\MenuController@destroy')->name('destroy');
+    });
+
 
 });
+
+Route::get('', [App\Http\Controllers\Frontend\FrontendController::class, 'homepage'])->name('homepage');
+Route::get('services', [App\Http\Controllers\Frontend\FrontendController::class, 'services'])->name('services');

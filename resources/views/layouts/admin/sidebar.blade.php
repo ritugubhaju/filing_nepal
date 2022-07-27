@@ -44,6 +44,18 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('menu.index')}}" aria-expanded="false">
+                        <i class="fas fa-user"></i></i> Menu
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('client.index')}}" aria-expanded="false">
+                        <i class="fas fa-user"></i></i> Booking
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- Sidebar -->
