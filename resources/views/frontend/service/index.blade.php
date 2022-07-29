@@ -1,111 +1,103 @@
 @extends ('frontend.layouts.app')
 @section('content')
 
-    <!-- services start  -->
-    @if ($services->isNotEmpty())
-        <div id="Paris" class="tabcontent">
-            <section id="inservices">
-                <div class="container">
-                    <h3 class="ins_head">Our Services</h3>
+    <!-- services start --- navbar services part  -->
+    <div class="container">
+        <div class="m-4">
+            <ul class="nav nav-pills my-5" id="myTab">
+                @if (isset($service_category))
+                    @foreach ($service_category as $key => $data)
+                        <li class="nav-item">
+                            <a href="#{{ $data->slug }}"
+                                class="nav-link {{ $key == 0 ? 'active' : '' }}">{{ $data->title }}</a>
+                        </li>
+                    @endforeach
+                @endif
+            </ul>
+            <div class="tab-content">
+                @if (isset($service_category))
+                    @foreach ($service_category as $key => $data)
+                        <div class="tab-pane fade show {{ $key == 0 ? 'active' : '' }}" id="{{ $data->slug }}">
+                            @foreach ($data->categories as $service)
+                                <div class=" s_cont ">
+                                    <h6 class="insleft_title"><i class="fa fa-book"
+                                            aria-hidden="true"></i>{{ $service->title }}
+                                    </h6>
+                                    <p class="insleft_para pb-0 mb-0">{!! $service->content !!}</p>
+                                    <div class="insbtn">
+                                        <div class="dbtn"><a href="">Detais</a></div>
 
-                    <div class="row g-0">
-                        <div class="col-lg-4">
-                            @foreach($service_category as $data)
-                            <p class="sr_row bdr sr_row_01 " id="comp">{{$data->title}} <i
-                                    class="fa fa-caret-right" aria-hidden="true"></i></p>
-                            <p class="sr_row sr_row_01 bdr" id="tx1">Taxation <i class="fa fa-caret-right"
-                                    aria-hidden="true"></i> </p>
+                                        <button type="button" class="btn-servicemodal book" data-id="{{ $service->id }}">
+                                            Book Services
+                                        </button>
+
+                                    </div>
+                                </div>
                             @endforeach
-                        </div>
-
-                        <div class="col-lg-8 cont-0  ">
-
-
-                            <div class="comp ">
-
-                                <div class=" s_cont ">
-                                    <h6 class="insleft_title"><i class="fa fa-book" aria-hidden="true"></i>Public Company
-                                        Registration</h6>
-                                    <p class="insleft_para pb-0 mb-0">Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Autem,
-                                        consequuntur cum
-                                        ea commodi fugiat accusantium deleniti! Cumque explicabo.</p>
-                                    <div class="insbtn">
-                                        <div class="dbtn"><a href="">Detais</a></div>
-                                        <div class="bbtn " id="myBtn">Book Services</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tax">
-
-                                <div class=" s_cont ">
-                                    <h6 class="insleft_title"><i class="fa fa-book" aria-hidden="true"></i>Taxation</h6>
-                                    <p class="insleft_para pb-0 mb-0">Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit. Autem,
-                                        consequuntur cum
-                                        ea commodi fugiat accusantium deleniti! Cumque explicabo.</p>
-                                    <div class="insbtn">
-                                        <div class="dbtn"><a href="">Detais</a></div>
-                                        <div class="bbtn " id="myBtn">Book Services</div>
-                                    </div>
-                                </div>
-                            </div>
-
-            </section>
-            <!-- services modal start  -->
-            <div class="container">
-                <div class="row">
-                    <div id="myModal" class="modal">
-
-                        <!-- Modal content -->
-                        <div class="modal-content1">
-                            <div class="rspan"> <span class="close">&times;</span></div>
-                            <div class="top_title">
-                                <h3>Public Company Registration</h3>
-                                <p>Welcome Please Enter the Details</p>
-                            </div>
-                            <div class="cdetails ">
-                                <h3 class="pb-2">Company Details</h3>
-                                <input type="text" class="pname" placeholder="Purpose Name">
-
-                                <select class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example">
-                                    <option selected>Select Services</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                                <input type="text" class="pname" placeholder="Company Address">
-
-
-                            </div>
-                            <div class="pdetails ">
-                                <h3 class="pt-3 pb-2">Personal Details</h3>
-                                <input type="text" class="pname" placeholder="Name">
-                                <input type="email" class="pname my-4" placeholder="Email Id">
-                                <div class="lpname_0">
-
-                                    <input type="number" class="pname lpname" placeholder="Phone Number">
-
-
-
-                                    <input type="number" class="pname  lpname" placeholder="Mobile Number">
-
-                                </div>
-                            </div>
-                            <div class="book_1 pt-5">
-                                <button type="submit" class="nbook">Book Now</button>
-                            </div>
 
                         </div>
-
-                    </div>
-                </div>
-
+                    @endforeach
+                @endif
             </div>
-            <!-- services modal end  -->
         </div>
+    </div>
 
-        <!-- services end  -->
-    @endif
+
+    <!-- services modal start  -->
+    <div class="modal bookModal" id="modal bookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Welcome Please Enter the Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" name="enq" action="{{ route('booking.store') }}">
+                        @csrf
+                        <input type="hidden" class="service_id" name="service_id">
+                        <div class="cdetails ">
+                            <h3 class="pb-2">Company Details</h3>
+                            <input type="text" required name="company_name" class="pname" placeholder="Name">
+                            <input type="text" name="company_address" class="pname my-4" placeholder="Address">
+
+
+                        </div>
+                        <div class="pdetails ">
+                            <h3 class="pt-3 pb-2">Personal Details</h3>
+                            <input type="text" required name="name" class="pname" placeholder="Name">
+                            <input type="email" required name="email" class="pname my-4" placeholder="Email Id">
+                            <div class="lpname_0">
+
+                                <input type="number" name="phone" class="pname lpname" placeholder="Phone Number">
+
+
+
+                                <input type="number" required name="mobile" class="pname  lpname"
+                                    placeholder="Mobile Number">
+
+                            </div>
+                        </div>
+                        <div class="book_1 pt-5">
+                            <button type="submit" class="nbook">Book Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- services modal end  -->
 @stop
+
+@section('page-specific-scripts')
+
+    <script>
+        $('.btn-servicemodal').click(function(e) {
+            e.preventDefault();
+            let service_id = $(this).data('id');
+            $('.service_id').val(service_id);
+            $('.bookModal').modal('show')
+
+        })
+    </script>
+@endsection

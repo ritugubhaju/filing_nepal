@@ -13,7 +13,7 @@ class BookingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,12 @@ class BookingRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name'=>'required',
+            'mobile' => 'required|digits:10',
+            'email' => 'required|email'
         ];
+
+        return $rules;
     }
 }

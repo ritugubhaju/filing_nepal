@@ -13,7 +13,7 @@
             <form class="form form-validate floating-label" action="{{route('menu.update',$menu->slug)}}"
                   method="POST" enctype="multipart/form-data" novalidate>
             @method('PUT')
-            @include('menu.form', ['header' => 'Edit menu <span class="text-primary">('.($menu->title).')</span>'])
+            @include('menu.form', ['header' => 'Edit menu <span class="text-primary">('.($menu->name).')</span>'])
             </form>
         </div>
     </section>

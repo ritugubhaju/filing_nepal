@@ -51,8 +51,14 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('client.index')}}" aria-expanded="false">
+                    <a href="{{ route('booking.index')}}" aria-expanded="false">
                         <i class="fas fa-user"></i></i> Booking
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('booking.quote')}}" aria-expanded="false">
+                        <i class="fas fa-user"></i></i> Recent Quote
                     </a>
                 </li>
 

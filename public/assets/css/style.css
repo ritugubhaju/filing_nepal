@@ -210,7 +210,16 @@ body {
     padding: 5vh 0;
 
 }
+.nav-pills .nav-link {
+    border-radius: 0 !important;
+    font-size: 20px !important;
+    padding: 10px 45px !important;
+  }
 
+.nav-pills .nav-link.active {
+    background-color:#262262 !important;
+    color: #fff !important;
+}
 
 
 .abox .fa {
@@ -727,13 +736,13 @@ body {
 
 .insbtn {
     display: flex;
-    justify-content: end;
-
-}
+    /* justify-content: end; */
+    margin-top: 25px;
+  }
 
 .insleft_title {
-    font-size: 18px;
-    font-weight: 450;
+    font-size: 19px;
+    font-weight: 600;
 }
 
 .insleft_title .fa {
@@ -759,7 +768,7 @@ body {
     text-decoration: none;
 }
 
-.bbtn {
+.book {
     height: 5vh;
     width: 130px;
     border: 2px solid #F1592A;
@@ -774,7 +783,7 @@ body {
 }
 
 .insleft_para {
-    font-size: 16px;
+    font-size: 18px;
     color: #606060;
 }
 
@@ -1035,7 +1044,7 @@ body {
 }
 
 
-/* 
+/*
 .mrequest {
     padding: 0px 15vw;
 } */
@@ -1192,7 +1201,7 @@ body {
 /* .banner_arrow {
     position: absolute;
     color: #ffffff;
-    
+
     top: 50%;
     transform: translateY(-50%);
     font-size: 28px;

@@ -26,6 +26,15 @@ class Menu extends Model
      */
     protected $fillable = ['slug', 'name', 'url',  'order',  'status'];
 
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function subMenus()
     {
         return $this->hasMany(SubMenu::class);

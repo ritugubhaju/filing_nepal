@@ -25,7 +25,7 @@
   <section id="nav">
     <nav class="navbar navbar-expand-lg ">
       <div class="container">
-        <a class="navbar-brand" href="#" class="tablinks" onclick="openCity(event, 'London' )"><img src="{{ asset('images/fl-LOGO.png') }}"
+        <a class="navbar-brand" href="{{ url('') }}" class="tablinks" onclick="openCity(event, 'London' )"><img src="{{ asset('images/fl-LOGO.png') }}"
             alt="" class="filling_logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,29 +34,14 @@
         <div class="tab">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#" class="tablinks"
-                  onclick="openCity(event, 'London' )" id="defaultOpen">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" class="tablinks" onclick="openCity(event, 'About')">About</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false" class="tablinks" onclick="openCity(event, 'Paris')">
-                  Services
-                </a>
 
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" class="tablinks" onclick="openCity(event, 'Client')">Clients</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" class="tablinks" onclick="openCity(event, 'Request')">Request Quote</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" class="tablinks" onclick="openCity(event, 'Contact')">Contact Us</a>
-              </li>
+                @foreach($menus as $menu)
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ url($menu->url) }}" class="tablinks">
+                        {{$menu->name}}
+                    </a>
+                    </li>
+                @endforeach
             </ul>
 
           </div>

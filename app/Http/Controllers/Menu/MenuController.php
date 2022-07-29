@@ -55,7 +55,7 @@ class MenuController extends Controller
 
     public function update(MenuRequest $request, Menu $menu)
     {
-        if ($menu->update($request->data())) {
+        if ($menu->update($request->inputs())) {
             $menu->fill([
                 'slug' => Str::slug($request->title),
             ])->save();

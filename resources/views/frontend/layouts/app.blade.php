@@ -11,6 +11,8 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- Toastr-->
+  <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
 
 </head>
 
@@ -34,11 +36,30 @@
   <script src="{{ asset('assets/js/go_top.js') }}"></script>
   <script src="{{ asset('assets/js/tab.js') }}"></script>
   <script src="{{ asset('assets/js/stab.js') }}"></script>
-  <script src="{{ asset('assets/js/modal.js') }}"></script>
 
   <script src="{{ asset('assets/js/carousel.js') }}"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+  <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+  <script src="{{ asset('js/toastr/toastr.js') }}"></script>
+{{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> --}}
 
+
+ @yield('page-specific-scripts')
+ {!! Toastr::message() !!}
+ <!-- for tabs -->
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var tabList = [].slice.call(document.querySelectorAll("#myTab a"));
+      tabList.forEach(function (tab) {
+        var tabTrigger = new bootstrap.Tab(tab);
+
+        tab.addEventListener("click", function (event) {
+          event.preventDefault();
+          tabTrigger.show();
+        });
+      });
+    });
+  </script>
 
 
 </body>

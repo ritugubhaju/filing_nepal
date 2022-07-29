@@ -124,8 +124,18 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::get('menu/{id}/destroy', 'Menu\MenuController@destroy')->name('destroy');
     });
 
+    Route::group(['as' => 'booking.', 'prefix' => 'booking',], function () {
+        Route::get('', 'Booking\BookingController@index')->name('index');
+        Route::get('quote', 'Booking\BookingController@quote')->name('quote');
+        Route::post('', 'Booking\BookingController@store')->name('store');
+    });
+
+
 
 });
 
-Route::get('', [App\Http\Controllers\Frontend\FrontendController::class, 'homepage'])->name('homepage');
+Route::get('', [App\Http\Controllers\Frontend\FrontendController::class, 'homepage'])->name('home');
 Route::get('services', [App\Http\Controllers\Frontend\FrontendController::class, 'services'])->name('services');
+Route::get('recent-quote', [App\Http\Controllers\Frontend\FrontendController::class, 'quote'])->name('recent-quote');
+Route::post('quote-details', [App\Http\Controllers\Frontend\FrontendController::class, 'quoteDetails'])->name('quote-details');
+Route::get('clients', [App\Http\Controllers\Frontend\FrontendController::class, 'client'])->name('clients');
