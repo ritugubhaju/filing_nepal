@@ -179,205 +179,108 @@
             </p>
           </div>
         </div>
-        <div class="row g-0">
-          <div class="col-lg-4">
-            <p class="sr_row bdr
-           sr_row_01 " id="comp">Company Registration <i class="fa fa-caret-right" aria-hidden="true"></i></p>
-            <p class="sr_row sr_row_01 bdr" id="tx">Taxation <i class="fa fa-caret-right" aria-hidden="true"></i> </p>
-            <p class="sr_row sr_row_01 bdr" id="compli">Compliance <i class="fa fa-caret-right" aria-hidden="true"></i>
-            </p>
-            <p class="sr_row sr_row_01 bdr" id="writ">Writ<i class="fa fa-caret-right" aria-hidden="true"></i></p>
-            <p class="sr_row sr_row_01 bdr1" id="coop">Cooperation <i class="fa fa-caret-right" aria-hidden="true"></i>
-            </p>
-          </div>
+        <div class="container">
+            <div class="m-4">
+                <ul class="nav nav-pills my-5" id="myTab">
+                    @if (isset($service_category))
+                        @foreach ($service_category as $key => $data)
+                            <li class="nav-item">
+                                <a href="#{{ $data->slug }}"
+                                    class="nav-link {{ $key == 0 ? 'active' : '' }}">{{ $data->title }}</a>
+                            </li>
+                        @endforeach
+                    @endif
+                </ul>
+                <div class="tab-content">
+                    @if (isset($service_category))
+                        @foreach ($service_category as $key => $data)
+                            <div class="tab-pane fade show {{ $key == 0 ? 'active' : '' }}" id="{{ $data->slug }}">
+                                @foreach ($data->categories as $service)
+                                    <div class=" s_cont ">
+                                        <h6 class="insleft_title"><i class="fa fa-book"
+                                                aria-hidden="true"></i>{{ $service->title }}
+                                        </h6>
+                                        <p class="insleft_para pb-0 mb-0">{!! $service->content !!}</p>
+                                        <div class="insbtn">
+                                            <div class="dbtn"><a href="{{ route('services') }}">View Now</a></div>
 
-          <div class="col-lg-8 sl_row   ">
-
-
-            <div class="comp">
-
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Company Registration <span
-                  class="tablinks serv_view" onclick="openCity(event, 'Paris')">View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span
-                  class="tablinks serv_view" onclick="openCity(event, 'Paris')">View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span
-                  class="tablinks serv_view" onclick="openCity(event, 'Paris')">View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span
-                  class="tablinks serv_view" onclick="openCity(event, 'Paris')">View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span
-                  class="tablinks serv_view" onclick="openCity(event, 'Paris')">View
-                  Now</span></p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
-            <div class="tax">
-
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i> Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-            </div>
-            <div class="compli">
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i> Compliance Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-            </div>
-            <div class="writ">
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Writ Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-            </div>
-            <div class="coop">
-
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Cooperation Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-              <p class="sl_row_01"> <i class="fa fa-book" aria-hidden="true"></i>Public Company Registration <span>View
-                  Now</span></p>
-            </div>
-
-          </div>
-
         </div>
       </div>
     </section>
     <section id="testimonials">
-      <div class="container ">
-        <h2 class="px-5 rtitle_0">Our Clients</h2>
-        <div class="row align-items-center">
-          <div class="col-lg-5 d-flex align-items-center">
-            <div id="tes_slider">
-              <div id="carouselExampleDark" class="carousel  slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner pt-5 mt-5">
-                  <div class="carousel-item active text-center p-4 " data-bs-interval="1000">
+        <div class="container ">
+            <h2 class="px-5 rtitle_0">Our Clients</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-5 d-flex align-items-center">
+                    <div id="tes_slider">
+                        <div id="carouselExampleDark" class="carousel  slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner pt-5 mt-5">
+                              @foreach ($clients as $key => $data )
+                              <div class="carousel-item {{ $key == 0 ? 'active' : '' }} text-center p-4 " data-bs-interval="1000">
 
-                    <img class="c_height"
-                      src="https://img.freepik.com/free-photo/serious-indian-graduate-graduation-robe-with-crossed-arms-looking-forward_496169-1338.jpg?size=626&ext=jpg"
-                      alt="">
-                    <h4 class="pt-3 ">xan</h4>
-                    <h6 class="test_icon">ceo at xyz <i class="fa fa-twitter" aria-hidden="true"></i></h6>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga ipsa
-                      quisquam provident laborum earum .
-                      Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                  </div>
-                  <div class="carousel-item text-center p-4" data-bs-interval="1000">
-                    <img class="c_height"
-                      src="https://media.istockphoto.com/photos/man-working-at-home-picture-id1354077790?k=20&m=1354077790&s=612x612&w=0&h=5u4l-YyB1F38kN6sevx4dIYB0C-HvcPVDmOJyDPVAPw="
-                      alt="">
-                    <h5 class="pt-3 ">xan</h5>
-                    <h6 class="test_icon">ceo at xyz <i class="fa fa-twitter" aria-hidden="true"></i></h6>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga ipsa
-                      quisquam provident laborum earum .
-                      Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                  </div>
-                  <div class="carousel-item text-center p-4" data-bs-interval="1000">
-                    <img class="c_height"
-                      src="https://media.istockphoto.com/photos/man-working-at-home-picture-id1354077790?k=20&m=1354077790&s=612x612&w=0&h=5u4l-YyB1F38kN6sevx4dIYB0C-HvcPVDmOJyDPVAPw="
-                      alt="">
-                    <h5 class="pt-3 d-inline-block ">xan</h5>
-                    <h6 class="test_icon d-inline-block">ceo at xyz <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </h6>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga ipsa
-                      quisquam provident laborum earum .
-                      Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-                  </div>
+                                  <img class="c_height"
+                                      src="{{ asset($data->image_path) }}"
+                                      alt="">
+                                  <h4 class="pt-3 ">{{$data->title}}</h4>
+                                  <h6 class="test_icon">{{$data->position}} at {{$data->company_name}} <i class="fa fa-twitter" aria-hidden="true"></i>
+                                  </h6>
+                                  <p>{!!$data->content!!}</p>
+                              </div>
+                              @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon text-light" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon text-light" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                  data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon text-light" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                  data-bs-slide="next">
-                  <span class="carousel-control-next-icon text-light" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+                <div class="col-lg-7">
+                    <div class="sbtn tablinks serv_view" onclick="openCity(event, 'Client')">View All</div>
+                    <div class="cc"></div>
+
+
+
+                    <div class="owl-carousel pe-0 me-0">
+                        <div class="  slider_1">
+                            <div class="row pe-0 me-0">
+                              @foreach ($clients as $data)
+                              <div class="col-lg-4">
+                                  <img class="img-fluid"
+                                      src="{{ asset($data->image_path) }}"
+                                      alt="">
+                              </div>
+                              @endforeach
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="sbtn tablinks serv_view" onclick="openCity(event, 'Client')">View All</div>
-            <div class="cc"></div>
-
-
-
-            <div class="owl-carousel pe-0 me-0">
-              <div class="  slider_1">
-                <div class="row pe-0 me-0">
-                  <div class="col-lg-4">
-                    <img class="img-fluid"
-                      src="https://media.istockphoto.com/photos/cube-isolated-on-black-picture-id1390331991?k=20&m=1390331991&s=612x612&w=0&h=XMQatMkZ2asC2vHlJmbyCu2uWeaZMwm3EL8Lt0dWm4o="
-                      alt="">
-                  </div>
-                  <div class="col-lg-4">
-                    <img class="img-fluid"
-                      src="https://img.freepik.com/free-vector/camera-radar-logo-security-company-vector-illustration_7649-2314.jpg?size=338&ext=jpg"
-                      alt="">
-                  </div>
-                  <div class="col-lg-4 pe-0 me-0">
-                    <img class="img-fluid"
-                      src="https://images.unsplash.com/photo-1612810806695-30f7a8258391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9nbyUyMGltYWdlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                      alt="">
-                  </div>
-                </div>
-                <div class="row mt-4 pe-0 me-0">
-                  <div class="col-lg-4">
-                    <img class="img-fluid"
-                      src="https://images.unsplash.com/photo-1636051028886-0059ad2383c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9nbyUyMGltYWdlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                      alt="">
-                  </div>
-                  <div class="col-lg-4">
-                    <img class="img-fluid"
-                      src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                      alt="">
-                  </div>
-                  <div class="col-lg-4 pe-0 me-0">
-                    <img class="img-fluid"
-                      src="https://images.unsplash.com/photo-1636044594149-6e2f289c3868?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                      alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
-      </div>
     </section>
   </div>
   <!-- services start  -->

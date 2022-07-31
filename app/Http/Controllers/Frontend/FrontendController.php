@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendQuoteInfo;
 use App\Modules\Models\Client\Client;
 use App\Modules\Models\Menu\Menu;
+use App\Modules\Models\Page\Page;
 use App\Modules\Models\RecentQuote\RecentQuote;
 use App\Modules\Models\Service\Service;
 use App\Modules\Models\ServiceCategory\ServiceCategory;
@@ -17,7 +18,10 @@ class FrontendController extends Controller
     public function homepage()
     {
         $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
-        return view('frontend.home',compact('menus'));
+        $service_category = ServiceCategory::where('status', 1)->get();
+        $services = Service::where('status', 1)->get();
+        $clients = Client::where('status', 1)->latest()->take(6)->get();
+        return view('frontend.home',compact('menus','service_category','services','clients'));
     }
 
     public function services()
@@ -29,6 +33,13 @@ class FrontendController extends Controller
         return view('frontend.service.index',compact('services','service_category','menus'));
     }
 
+    public function servicesDetails(Service $services)
+    {
+        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+
+        return view('frontend.service.detail', compact('services','menus'));
+    }
+
     public function quote()
     {
         $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
@@ -38,7 +49,6 @@ class FrontendController extends Controller
 
     public function quoteDetails(Request $request)
     {
-       // dd($request->all());
         $data = $request->all();
         $quote = new RecentQuote();
         $quote->name = request('name');
@@ -59,4 +69,13 @@ class FrontendController extends Controller
         $clients = Client::where('status', 1)->latest()->take(6)->get();
         return view('frontend.client.index',compact('menus','clients'));
     }
+
+    public function about()
+    {
+        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+        $about = Page::where('slug','about')->where('status', 1)->get();
+        return view('frontend.about',compact('menus','about'));
+    }
+
+
 }

@@ -25,7 +25,7 @@
                                     </h6>
                                     <p class="insleft_para pb-0 mb-0">{!! $service->content !!}</p>
                                     <div class="insbtn">
-                                        <div class="dbtn"><a href="">Detais</a></div>
+                                        <div class="dbtn"><a href="{{ route('services.detail', $service->slug) }}">Details</a></div>
 
                                         <button type="button" class="btn-servicemodal book" data-id="{{ $service->id }}">
                                             Book Services

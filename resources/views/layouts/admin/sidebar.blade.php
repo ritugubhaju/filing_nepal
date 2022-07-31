@@ -57,6 +57,12 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('page.index')}}" aria-expanded="false">
+                        <i class="fas fa-user"></i></i> Page
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{ route('booking.quote')}}" aria-expanded="false">
                         <i class="fas fa-user"></i></i> Recent Quote
                     </a>
