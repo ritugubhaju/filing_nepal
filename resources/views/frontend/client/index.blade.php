@@ -103,7 +103,6 @@
                           </div>
                       </div>
                       <div class="col-lg-7">
-                          <div class="sbtn tablinks serv_view" onclick="openCity(event, 'Client')">View All</div>
                           <div class="cc"></div>
 
 

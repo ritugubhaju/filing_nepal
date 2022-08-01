@@ -139,6 +139,9 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::post('', 'Booking\BookingController@store')->name('store');
     });
 
+    Route::get('setting', 'Setting\SettingController@index')->name('setting.index');
+    Route::put('setting/update', 'Setting\SettingController@update')->name('setting.update');
+
 
 
 });
@@ -150,3 +153,5 @@ Route::get('recent-quote', [App\Http\Controllers\Frontend\FrontendController::cl
 Route::post('quote-details', [App\Http\Controllers\Frontend\FrontendController::class, 'quoteDetails'])->name('quote-details');
 Route::get('clients', [App\Http\Controllers\Frontend\FrontendController::class, 'client'])->name('clients');
 Route::get('about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
+Route::get('contact', [App\Http\Controllers\Frontend\FrontendController::class, 'contact'])->name('contact');
+Route::post('contact-details', [App\Http\Controllers\Frontend\FrontendController::class, 'contactDetails'])->name('contact-details');

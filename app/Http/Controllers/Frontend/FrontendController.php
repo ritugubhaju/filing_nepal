@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendContactInfo;
 use App\Mail\SendQuoteInfo;
 use App\Modules\Models\Client\Client;
 use App\Modules\Models\Menu\Menu;
@@ -21,7 +22,9 @@ class FrontendController extends Controller
         $service_category = ServiceCategory::where('status', 1)->get();
         $services = Service::where('status', 1)->get();
         $clients = Client::where('status', 1)->latest()->take(6)->get();
-        return view('frontend.home',compact('menus','service_category','services','clients'));
+        $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
+
+        return view('frontend.home',compact('menus','service_category','services','clients','about'));
     }
 
     public function services()
@@ -73,8 +76,23 @@ class FrontendController extends Controller
     public function about()
     {
         $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
-        $about = Page::where('slug','about')->where('status', 1)->get();
-        return view('frontend.about',compact('menus','about'));
+        $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
+        $mission = Page::where('slug','mission')->where('status', 1)->get();
+        $vision = Page::where('slug','vision')->where('status', 1)->get();
+        return view('frontend.about',compact('menus','about','mission','vision'));
+    }
+
+    public function contact()
+    {
+        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+        return view('frontend.contact.contact',compact('menus'));
+    }
+
+    public function contactDetails(Request $request)
+    {
+        $data = $request->all();
+        Mail::to('ritu.gubhaju20@gmail.com')->send(new SendContactInfo($data));
+        return redirect()->back()->withSuccess(trans('Contact Inquiry Send Successfully'));
     }
 
 

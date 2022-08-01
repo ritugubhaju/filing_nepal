@@ -1,35 +1,52 @@
 @extends ('frontend.layouts.app')
 @section('content')
 
-<!-- about  -->
-<section id="abt_more">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7 d-flex align-items-center">
-          <div>
+    <!-- about  -->
+    <section id="abt_more">
+        <div class="container">
+            <div class="row">
+                @foreach ($about as $data)
+                    <div class="col-lg-7 d-flex align-items-center">
+                        <div>
+                            <h2 class="rtitle_0">{{ $data->title }}</h2 class="rtitle_0">
+                            <p class="abt_para">{!! $data->content !!}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 text-end">
+                        <div class="">
+                            <img class="img-fluid" src="{{ asset($data->image_path) }}" alt="">
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
 
-            <h2 class="rtitle_0">About Filing Nepal</h2 class="rtitle_0">
-            <p class="abt_para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, error quia?
-              Harum,
-              dignissimos a
-              voluptatum soluta et, laboriosam possimus aperiam molestias cumque illo nulla
-              necessitatibus,
-              porro laborum tenetur facere. Similique nobis adipisci, labore illo, eum fugiat aliquid
-              velit,
-              odit repellat facere minus? Aliquam facere deserunt ea excepturi et facilis delectus cumque
-              . Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, assumenda! Commodi
-              necessitatibus officiis quidem velit tempora voluptatum illo magni sapiente expedita sunt
-              labore, ea illum. Obcaecati doloremque quo nam ex?</p>
-          </div>
+    <section id="data">
+        <div class="container">
+            <div class="row">
+                @foreach ($mission as $data)
+                    <div class="col-lg-6   pe-5">
+                        <div class="ab_vission">
+                            <p class="d_title mb-0 pb-0  pb-3">{{ $data->title }}</p>
+                            <p class="d_para">{!! $data->content !!}
+                            </p>
+                        </div>
+
+
+                    </div>
+                @endforeach
+
+                @foreach ($vision as $data)
+                    <div class="col-lg-6">
+                        <div class="ab_vission ">
+
+                            <p class="d_title mb-0 pb-0 pb-3">{{ $data->title }}</p>
+                            <p class="d_para">{!! $data->content !!}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-        <div class="col-lg-5 text-end">
-          <div class="">
-            <img class="img-fluid"
-              src="https://img.freepik.com/free-photo/hand-using-laptop-computer-with-virtual-screen-document-online-approve-paperless-quality-assurance-erp-management-concept_616485-61.jpg?size=626&ext=jpg"
-              alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 @stop

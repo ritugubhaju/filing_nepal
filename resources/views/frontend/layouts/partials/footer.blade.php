@@ -2,17 +2,23 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-lg-3">
+        <div class="col-lg-5">
           <div class="fright">
             <img src="./image (3).png" alt="" class="filling_logo">
-            <p class="pt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Perferendis voluptatibus
-              minus a .</p>
+            <p class="pt-4">{{setting('footer')}}</p>
             <h5 class="pt-3 ">Social Media</h5>
-            <p class="top d-flex justify-content-start"><i class="fa fa-facebook " aria-hidden="true"></i>
-              <i class="fa fa-instagram mx-4" aria-hidden="true"></i>
-              <i class="fa fa-twitter" aria-hidden="true"></i>
+            @if(setting('facebook') !=null)
+             <p class="top d-flex justify-content-start"><a href="{{setting('facebook')}}"><i class="fa fa-facebook " aria-hidden="true"></i> </a>
+            @endif
+
+            @if(setting('instagram') !=null)
+            <a href="{{setting('instagram')}}"> <i class="fa fa-instagram mx-4" aria-hidden="true"></i></a>
+            @endif
+
+            @if(setting('twitter') !=null)
+            <a href="{{setting('twitter')}}">  <i class="fa fa-twitter" aria-hidden="true"></i> </a>
             </p>
+            @endif
           </div>
 
         </div>
@@ -20,36 +26,23 @@
           <div class="fmidle tab">
             <h5>Links</h5>
             <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i><button class="tablinks"
-                onclick="openCity(event, 'London' )" id="defaultOpen">Home</button> </p>
+                onclick="openCity(event, 'London' )" id="defaultOpen"><a class="links" href="{{url('')}}">Home</a></button> </p>
             <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i><button class="tablinks"
-                onclick="openCity(event, 'About' )">About </button> </p>
+                onclick="openCity(event, 'About' )"><a class="links" href="{{url('about')}}">About </a> </button> </p>
             <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i><button class="tablinks"
-                onclick="openCity(event, 'Paris' )">Services</button> </p>
+                onclick="openCity(event, 'Paris' )"><a class="links" href="{{url('services')}}">Services</a></button> </p>
             <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i><button class="tablinks"
-                onclick="openCity(event, 'Request' )">Request Quote</button> </p>
+                onclick="openCity(event, 'Request' )"><a class="links" href="{{url('recent-quote')}}">Request Quote</a></button> </p>
             <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i> <button class="tablinks"
-                onclick="openCity(event, 'Contact' )">Contact Us</button></p>
+                onclick="openCity(event, 'Contact' )"><a class="links" href="{{url('contact')}}">Contact Us</a></button></p>
 
 
 
 
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="fmidle">
-            <h5>Services</h5>
-            <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Public Company Registration </p>
-            <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Private Company Registration </p>
-            <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i> NGO Registration </p>
-            <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Trademark Registration </p>
-            <p class="fsspan"><i class="fa fa-hand-o-right" aria-hidden="true"></i> Copyright Registration </p>
 
-
-
-
-          </div>
-        </div>
-        <div class="col-lg-3 pt-5 ">
+        <div class="col-lg-4 pt-5 ">
           <div class="fnews">
             <div>
               <h5>News Letters</h5>
