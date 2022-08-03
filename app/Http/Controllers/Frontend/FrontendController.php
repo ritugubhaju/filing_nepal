@@ -12,7 +12,10 @@ use App\Modules\Models\RecentQuote\RecentQuote;
 use App\Modules\Models\Service\Service;
 use App\Modules\Models\ServiceCategory\ServiceCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 
 class FrontendController extends Controller
 {
@@ -24,8 +27,57 @@ class FrontendController extends Controller
         $clients = Client::where('status', 1)->latest()->take(6)->get();
         $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
 
+
         return view('frontend.home',compact('menus','service_category','services','clients','about'));
     }
+
+    public function searchDetails(Request $request){
+        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+        $search = $request->search;
+
+        $service_categories = ServiceCategory::where('slug',$search)->where('status', 1)->get();
+        $services = Service::where('slug',$search)->where('status', 1)->get();
+
+        return view('frontend.service.servicecategory',compact('service_categories','services','menus'));
+
+
+    }
+
+    public function register()
+    {
+        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+
+        return view('frontend.register-login.register',compact('menus'));
+    }
+
+    public function registerDetails(Request $request)
+    {
+        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+
+        $validator = $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:clients'],
+            'password' => ['required'],
+        ]);
+
+        $client = new Client();
+
+        $client->title = $request['title'];
+        $client->email = $request['email'];
+        $client->password = Hash::make($request['password']);
+        $client->company_name = $request['company_name'];
+        $client->save();
+        Toastr()->success('The information has been submitted successfully.','Success');
+        return redirect()->back();
+    }
+
+    public function clientLogin()
+    {
+        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+
+        return view('frontend.register-login.login',compact('menus'));
+    }
+
 
     public function services()
     {

@@ -13,6 +13,7 @@
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <!-- Toastr-->
   <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -43,9 +44,21 @@
   <script src="{{ asset('js/toastr/toastr.js') }}"></script>
 {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> --}}
 
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
  @yield('page-specific-scripts')
  {!! Toastr::message() !!}
+
+ <script>
+    $(document).ready(function() {
+        // Select2 Multiple
+        $('.select2-multiple').select2({
+            placeholder: "Select",
+            allowClear: true
+        });
+
+    });
+
+</script>
  <!-- for tabs -->
  <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -61,6 +74,15 @@
     });
   </script>
 
+<script>
+    $('.btn-servicemodal').click(function(e) {
+        e.preventDefault();
+        let service_id = $(this).data('id');
+        $('.service_id').val(service_id);
+        $('.bookModal').modal('show')
+
+    })
+</script>
 
 </body>
 

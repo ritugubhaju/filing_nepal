@@ -155,3 +155,8 @@ Route::get('clients', [App\Http\Controllers\Frontend\FrontendController::class, 
 Route::get('about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
 Route::get('contact', [App\Http\Controllers\Frontend\FrontendController::class, 'contact'])->name('contact');
 Route::post('contact-details', [App\Http\Controllers\Frontend\FrontendController::class, 'contactDetails'])->name('contact-details');
+Route::get('search/', [App\Http\Controllers\Frontend\FrontendController::class, 'searchDetails'])->name('search-details');
+Route::get('clientregister', [App\Http\Controllers\Frontend\FrontendController::class, 'register'])->name('register');
+Route::post('register-details', [App\Http\Controllers\Frontend\FrontendController::class, 'registerDetails'])->name('register-details');
+ Route::get('client-login', [App\Http\Controllers\Frontend\FrontendController::class, 'clientLogin'])->name('client-login');
+Route::post('login-details', [App\Http\Controllers\Frontend\FrontendController::class, 'loginDetails'])->name('login-details');

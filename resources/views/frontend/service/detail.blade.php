@@ -22,6 +22,10 @@
                                 </div>
 
                             </div>
+
+                            <button type="button" class="btn-servicemodal book" data-id="{{ $services->id }}">
+                                Book Services
+                            </button>
                         </div>
                     </div>
 

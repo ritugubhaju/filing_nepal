@@ -4,19 +4,37 @@
         <div class="col-lg-6">
           <div class="row">
 
-            <p>Call Now : 384757547
+            <p>Call Now : <a  class="links" href="tel:{{setting('phone')}}">{{setting('phone')}}</a>
 
 
-              <span class="ps-5"> Email Us: fillingnepal@gmail.com</span>
+              <span class="ps-5"> Email Us:   <a class="links" href="mailto:{{setting('email')}}"> </a></span>
             </p>
 
           </div>
 
         </div>
+
+
         <div class="col-lg-6 text-end">
-          <p class="top d-flex justify-content-end"><i class="fa fa-facebook" aria-hidden="true"></i>
-            <i class="fa fa-instagram mx-4" aria-hidden="true"></i>
-            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <button><a  href="{{ route('register') }}" class="dbtn" class="help d-md-show"><i class="d-icon-user"></i>
+                Register</a></button>
+                <button><a  href="{{ route('client-login') }}" class="dbtn" class="help d-md-show"><i class="d-icon-user"></i>
+                    Login</a></button>
+            @if(setting('facebook') !=null)
+                <p class="top d-flex justify-content-end">
+                    <a href="{{setting('facebook')}}">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+            @endif
+
+            @if(setting('instagram') !=null)
+             <a href="{{setting('instagram')}}"><i class="fa fa-instagram mx-4" aria-hidden="true"></i>
+             </a>
+            @endif
+
+            @if(setting('twitter') !=null)
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            @endif
           </p>
         </div>
       </div>
