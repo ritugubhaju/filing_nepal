@@ -214,15 +214,19 @@ body {
     border-radius: 0 !important;
     font-size: 20px !important;
     padding: 10px 45px !important;
+
   }
 
-.nav-pills .nav-link.active {
-    background-color:#262262 !important;
-    color: #fff !important;
+.nav-pills .nav-link:hover {
+    background-color:#bbd7da !important ;
+   color: #000000;
 }
 
+.nav-pills .nav-link.active{
+    background-color:#bbd7da !important ;
+}
 
-.abox .fa {
+.work-icon {
     background-color: #ffffff;
     width: 40px;
     height: 40px;
@@ -296,7 +300,6 @@ body {
     color: #262262;
     text-align: center;
 }
-
 
 .sr_row {
     /* background-color: #ff7e29; */
@@ -376,7 +379,7 @@ body {
 }
 
 .sl_row_01 {
-    height: 8vh;
+    height: 7vh;
     margin-bottom: 0;
     padding-bottom: 0;
     padding-left: 0;
@@ -454,125 +457,6 @@ body {
     width: 100%;
     height: 20vh;
 
-}
-
-.links{
-    color: #fff;
-}
-
-.login-form {
-
-
-    border-bottom: 10px solid #f47d34;
-
-}
-.login-section {
-    /* background-color: #b80056; */
-    padding-bottom: 273px;
-}
-.login_welcome{
-    color:#1b9aa6;
-}
-.btn-login{
-    background-color: #b80056;
-    color: #fff;
-    width: 100%;
-    height: 7vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-
-}
-.btn-login:hover {
-    background-color: rgba(184, 0, 86,0.8);
-}
-.login-btn{
-    width: 100px;
-    height: 6vh;
-    border-radius: 5px;
-    background-color: #b80056;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-
-}
-.login-btn button{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    border-radius: 0;
-    color: #ffffff;
-}
-.login-right-para{
-    color: #0c51a1;
-}
-.login-right-title{
-    font-size: 27px;
-    font-weight: bold;
-    text-align: center;
-    /* line-height: 52px; */
-
-}
-
-.login-list-icon{
-    font-size: 16px;
-    color: #1b9aa6;
-
-    flex-basis: 5%;
-}
-.login-list{
-    display: flex;
-    align-items: center;
-}
-.list-para{
-    flex-basis: 95%;
-}
-.forget-btn{
-    width: 100%;
-    height: 6vh;
-    border-radius: 5px;
-    background-color: #b80056;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.forget-btn button{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    border-radius: 0;
-    color: #ffffff;
-}
-.login-right{
-    padding-left: 30px;
-}
-.form-control{
-    color: rgb(134, 132, 132);
-    height: 7vh;
-    border-radius: 5px;
-}
-.register-banner{
-    background-color: #ffffff;
-    height: 30vh;
-    width: 100%;
-    margin: 0;
-}
-.register-banner img{
-    width: 100%;
-    height: 100%;
-}
-.login-right-title-0{
-    color: #b80056;
-    height: 7vh;
-    width: 190px;
-    background-color: #db92b4;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px auto 0 auto;
 }
 
 
@@ -888,7 +772,7 @@ body {
     text-decoration: none;
 }
 
-.book {
+.bbtn {
     height: 5vh;
     width: 130px;
     border: 2px solid #F1592A;
@@ -904,7 +788,7 @@ body {
 
 .insleft_para {
     font-size: 18px;
-    color: #606060;
+    /* color: #ffffff; */
 }
 
 .bbtn {
@@ -1303,7 +1187,13 @@ body {
     position: relative;
 
 }
-
+#Detail_ban{
+    background: url(https://img.freepik.com/free-photo/employees-are-managing-documents-office_43157-706.jpg?size=626&ext=jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 50vh;
+    position: relative;
+}
 #team {
     padding: 5vh 0;
     background-color: rgb(240, 245, 244);
@@ -1668,3 +1558,173 @@ body {
 }
 
 /* client page end  */
+.service-item-left{
+    display: flex;
+    flex-direction: column;
+}
+.service-item{
+    display: flex;
+    border: 1px solid rgb(128, 127, 127);
+}
+.nav-pills{
+    width: 50%;
+}
+.tab-content>.active {
+
+    /* border-left: 1px solid #ccc; */
+    background-color: #bbd7da;
+    /* color: #ffffff; */
+}
+
+.login-form {
+
+
+    border-bottom: 10px solid #f47d34;
+
+}
+.login-section {
+    /* background-color: #b80056; */
+    padding-bottom: 273px;
+}
+.login_welcome{
+    color:#1b9aa6;
+}
+.btn-login{
+    background-color: #b80056;
+    color: #fff;
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+
+}
+.btn-login:hover {
+    background-color: rgba(184, 0, 86,0.8);
+}
+.login-btn{
+    width: 100px;
+    height: 6vh;
+    border-radius: 5px;
+    background-color: #b80056;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+.login-btn button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-radius: 0;
+    color: #ffffff;
+}
+.login-right-para{
+    color: #0c51a1;
+}
+.login-right-title{
+    font-size: 27px;
+    font-weight: bold;
+    text-align: center;
+    /* line-height: 52px; */
+
+}
+
+.login-list-icon{
+    font-size: 16px;
+    color: #1b9aa6;
+
+    flex-basis: 5%;
+}
+.login-list{
+    display: flex;
+    align-items: center;
+}
+.list-para{
+    flex-basis: 95%;
+}
+.forget-btn{
+    width: 100%;
+    height: 6vh;
+    border-radius: 5px;
+    background-color: #b80056;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.forget-btn button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-radius: 0;
+    color: #ffffff;
+}
+.login-right{
+    padding-left: 30px;
+}
+.form-control{
+    color: rgb(134, 132, 132);
+    height: 7vh;
+    border-radius: 5px;
+}
+.register-banner{
+    background-color: #ffffff;
+    height: 30vh;
+    width: 100%;
+    margin: 0;
+}
+.register-banner img{
+    width: 100%;
+    height: 100%;
+}
+.login-right-title-0{
+    color: #b80056;
+    height: 7vh;
+    width: 190px;
+    background-color: #db92b4;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 0 auto;
+}
+.service-item-left{
+    display: flex;
+    flex-direction: column;
+}
+.service-item{
+    display: flex;
+    border: 1px solid rgb(128, 127, 127);
+}
+.nav-pills{
+    width: 50%;
+}
+.tab-content>.active {
+
+    /* border-left: 1px solid #ccc; */
+    background-color: #bbd7da;
+    /* color: #ffffff; */
+
+}
+.tab-content>.active {
+
+    /* border-left: 1px solid #ccc; */
+    background-color: #bbd7da;
+    /* color: #ffffff; */
+    width: 600px;
+
+
+}
+.s_cont1{
+    display: flex;
+    justify-content: space-between;
+
+}
+.view_now{
+    text-decoration: none;
+    color: #ee5e33;
+    font-size: 20px;
+    cursor: pointer;
+}

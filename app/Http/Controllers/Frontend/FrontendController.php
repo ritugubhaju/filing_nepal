@@ -11,6 +11,7 @@ use App\Modules\Models\Page\Page;
 use App\Modules\Models\RecentQuote\RecentQuote;
 use App\Modules\Models\Service\Service;
 use App\Modules\Models\ServiceCategory\ServiceCategory;
+use App\Modules\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -21,38 +22,33 @@ class FrontendController extends Controller
 {
     public function homepage()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
-        $service_category = ServiceCategory::where('status', 1)->get();
         $services = Service::where('status', 1)->get();
         $clients = Client::where('status', 1)->latest()->take(6)->get();
         $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
 
-
-        return view('frontend.home',compact('menus','service_category','services','clients','about'));
+        return view('frontend.home',compact('services','clients','about'));
     }
 
     public function searchDetails(Request $request){
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
         $search = $request->search;
 
         $service_categories = ServiceCategory::where('slug',$search)->where('status', 1)->get();
         $services = Service::where('slug',$search)->where('status', 1)->get();
 
-        return view('frontend.service.servicecategory',compact('service_categories','services','menus'));
+        return view('frontend.service.servicecategory',compact('service_categories','services'));
 
 
     }
 
     public function register()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
 
-        return view('frontend.register-login.register',compact('menus'));
+
+        return view('frontend.register-login.register');
     }
 
     public function registerDetails(Request $request)
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
 
         $validator = $this->validate($request, [
             'title' => ['required', 'string', 'max:255'],
@@ -67,39 +63,63 @@ class FrontendController extends Controller
         $client->password = Hash::make($request['password']);
         $client->company_name = $request['company_name'];
         $client->save();
+        $data = $request->all();
+        $check = $this->create($data);
         Toastr()->success('The information has been submitted successfully.','Success');
         return redirect()->back();
     }
 
+    public function create(array $data)
+    {
+      return User::create([
+        'name' => $data['title'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password'])
+      ]);
+    }
+
     public function clientLogin()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
+        return view('frontend.register-login.login');
+    }
 
-        return view('frontend.register-login.login',compact('menus'));
+    public function loginDetails(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $credentials = $request->except(['_token']);
+
+        $user = User::where('email',$request->email)->first();
+
+        if (auth()->attempt($credentials)) {
+            return redirect()->route('homepage');
+
+        }else{
+            session()->flash('message', 'Invalid credentials');
+            return redirect()->back();
+        }
     }
 
 
     public function services()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
 
-        $service_category = ServiceCategory::where('status', 1)->get();
         $services = Service::where('status', 1)->get();
-        return view('frontend.service.index',compact('services','service_category','menus'));
+        return view('frontend.service.index',compact('services'));
     }
 
     public function servicesDetails(Service $services)
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
 
-        return view('frontend.service.detail', compact('services','menus'));
+        return view('frontend.service.detail', compact('services'));
     }
 
     public function quote()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
-        $services = Service::where('status', 1)->get();
-        return view('frontend.quote.index',compact('menus','services'));
+        return view('frontend.quote.index');
     }
 
     public function quoteDetails(Request $request)
@@ -120,24 +140,21 @@ class FrontendController extends Controller
 
     public function client()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
         $clients = Client::where('status', 1)->latest()->take(6)->get();
-        return view('frontend.client.index',compact('menus','clients'));
+        return view('frontend.client.index',compact('clients'));
     }
 
     public function about()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
         $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
         $mission = Page::where('slug','mission')->where('status', 1)->get();
         $vision = Page::where('slug','vision')->where('status', 1)->get();
-        return view('frontend.about',compact('menus','about','mission','vision'));
+        return view('frontend.about',compact('about','mission','vision'));
     }
 
     public function contact()
     {
-        $menus = Menu::where('status', 1)->orderBy('order','asc')->get();
-        return view('frontend.contact.contact',compact('menus'));
+        return view('frontend.contact.contact');
     }
 
     public function contactDetails(Request $request)

@@ -6,7 +6,7 @@
         <div id="cbanner">
             <div class="cb_title">
                 <h2>Contact Now</h2>
-                <p><a href="">Home</a>>Contact Us</p>
+                <p><a href="{{route('homepage')}}">Home</a>>Contact Us</p>
             </div>
         </div>
         <section id="contact ">

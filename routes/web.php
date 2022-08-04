@@ -146,7 +146,7 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
 
 });
 
-Route::get('', [App\Http\Controllers\Frontend\FrontendController::class, 'homepage'])->name('home');
+Route::get('', [App\Http\Controllers\Frontend\FrontendController::class, 'homepage'])->name('homepage');
 Route::get('services', [App\Http\Controllers\Frontend\FrontendController::class, 'services'])->name('services');
 Route::get('servicesdetail/{services}', [App\Http\Controllers\Frontend\FrontendController::class, 'servicesDetails'])->name('services.detail');
 Route::get('recent-quote', [App\Http\Controllers\Frontend\FrontendController::class, 'quote'])->name('recent-quote');
@@ -158,5 +158,5 @@ Route::post('contact-details', [App\Http\Controllers\Frontend\FrontendController
 Route::get('search/', [App\Http\Controllers\Frontend\FrontendController::class, 'searchDetails'])->name('search-details');
 Route::get('clientregister', [App\Http\Controllers\Frontend\FrontendController::class, 'register'])->name('register');
 Route::post('register-details', [App\Http\Controllers\Frontend\FrontendController::class, 'registerDetails'])->name('register-details');
- Route::get('client-login', [App\Http\Controllers\Frontend\FrontendController::class, 'clientLogin'])->name('client-login');
+Route::get('client-login', [App\Http\Controllers\Frontend\FrontendController::class, 'clientLogin'])->name('client-login');
 Route::post('login-details', [App\Http\Controllers\Frontend\FrontendController::class, 'loginDetails'])->name('login-details');

@@ -37,6 +37,7 @@
   <script src="{{ asset('assets/js/go_top.js') }}"></script>
   <script src="{{ asset('assets/js/tab.js') }}"></script>
   <script src="{{ asset('assets/js/stab.js') }}"></script>
+  <script src="{{ asset('assets/js/modal.js') }}"></script>
 
   <script src="{{ asset('assets/js/carousel.js') }}"></script>
   {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
