@@ -40,6 +40,26 @@
                                             {{ Form::textarea('setting[footer]', old('setting.footer') ?: setting('footer'), ['class'=>'form-control','rows'=>2,'required']) }}
                                         </div>
 
+                                        <div class="form-group">
+                                            {{ Form::label('setting[work1]', 'How we Work1') }}
+                                            {{ Form::textarea('setting[work1]', old('setting.work1') ?: setting('work1'), ['class'=>'form-control','rows'=>2,'required']) }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            {{ Form::label('setting[work2]', 'How we Work2') }}
+                                            {{ Form::textarea('setting[work2]', old('setting.work2') ?: setting('work2'), ['class'=>'form-control','rows'=>2,'required']) }}
+                                        </div>
+
+                                        <div class="form-group">
+                                            {{ Form::label('setting[work3]', 'How we Work3') }}
+                                            {{ Form::textarea('setting[work3]', old('setting.work3') ?: setting('work3'), ['class'=>'form-control','rows'=>2,'required']) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ Form::label('setting[work4]', 'How we Work4') }}
+                                            {{ Form::textarea('setting[work4]', old('setting.work4') ?: setting('work4'), ['class'=>'form-control','rows'=>2,'required']) }}
+                                        </div>
+
+
 
                                     </div>
                                 </div>

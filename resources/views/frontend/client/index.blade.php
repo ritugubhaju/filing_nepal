@@ -34,9 +34,7 @@
                                           porro, quod quia nemo enim dolorum ea ex. Laborum ratione rerum officiis error
                                           amet corporis maxime.
                                           Facere nihil deserunt optio ipsum quidem nobis!</p>
-                                      <div class="rsubmit ">
-                                          <button type="submit " class="rsubmit_1">Read more</button>
-                                      </div>
+                                     
                                   </div>
 
 

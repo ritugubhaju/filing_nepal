@@ -8,7 +8,7 @@
 
             <div class="cb_title">
                 <h2>Quotation</h2>
-                <a href="" class="tablinks" onclick="openCity(event, 'London' )">Home</a>>Reqest Quote
+                <a href="{{route('homepage')}}" class="tablinks" onclick="openCity(event, 'London' )">Home</a>>Reqest Quote
             </div>
 
         </div>

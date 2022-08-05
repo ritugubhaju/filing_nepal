@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="category_id" class="col-form-label pt-0">Category</label>
                                 <select name="category_id" class="form-control" required id="">
@@ -26,13 +26,24 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group ">
                                 <label for="title" class="col-form-label pt-0">Service Name</label>
                                 <div class="">
                                     <input class="form-control" type="text" required name="title" value="{{ old('title', isset($service->title) ? $service->title : '') }}" placeholder="Enter Your Name">
                                 </div>
                                 <span id="textarea1-error" class="text-danger">{{ $errors->first('title') }}</span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group ">
+                                <label for="price" class="col-form-label pt-0">Service Price</label>
+                                <div class="">
+                                    <input class="form-control" type="number"  name="price" value="{{ old('price', isset($service->price) ? $service->price : '') }}" placeholder="Enter Your Service Price">
+                                </div>
+                                <span id="textarea1-error" class="text-danger">{{ $errors->first('price') }}</span>
                             </div>
 
                         </div>

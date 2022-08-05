@@ -38,6 +38,7 @@ class ServiceRequest extends FormRequest
             'category_id'               => $this->get('category_id'),
             'title'                  => $this->get('title'),
             'content'   => $this->get('content'),
+            'price'   => $this->get('price'),
             'status' => ($this->get('status') ? $this->get('status') : '') == 'on' ? '1' : '0',
         ];
         return $data;

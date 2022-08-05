@@ -27,6 +27,12 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('slider.index')}}" aria-expanded="false">
+                        <i class="fa fa-image"></i></i> Slider
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{ route('category.index')}}" aria-expanded="false">
                         <i class="fas fa-layer-group"></i></i> Service Category
                     </a>
@@ -50,6 +56,8 @@
                     </a>
                 </li>
 
+
+
                 <li>
                     <a href="{{ route('booking.index')}}" aria-expanded="false">
                         <i class="fas fa-book"></i></i> Booking
@@ -67,6 +75,7 @@
                         <i class="fa fa-quote-left"></i></i> Recent Quote
                     </a>
                 </li>
+
 
             </ul>
         </div>

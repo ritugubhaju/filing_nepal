@@ -21,7 +21,7 @@ class Service extends Model
         ];
     }
 
-    protected $fillable = array('category_id','title','slug','content','image','status',
+    protected $fillable = array('category_id','title','slug','content','price','image','status',
     );
 
     protected $casts = [

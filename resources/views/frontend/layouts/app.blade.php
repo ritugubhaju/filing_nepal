@@ -52,7 +52,7 @@
  <script>
     $(document).ready(function() {
         // Select2 Multiple
-        $('.select2-multiple').select2({
+        $('#select2Multiple').select2({
             placeholder: "Select",
             allowClear: true
         });

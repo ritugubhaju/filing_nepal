@@ -87,6 +87,15 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::get('permission/{id}/destroy', 'Permission\PermissionController@destroy')->name('destroy')->middleware('permission:permission-delete');
     });
 
+    Route::group(['as' => 'slider.', 'prefix' => 'slider',], function () {
+        Route::get('', 'Slider\SliderController@index')->name('index');
+        Route::get('create', 'Slider\SliderController@create')->name('create');
+        Route::post('', 'Slider\SliderController@store')->name('store');
+        Route::get('{slider}/edit', 'Slider\SliderController@edit')->name('edit');
+        Route::put('{slider}', 'Slider\SliderController@update')->name('update');
+        Route::get('slider/{id}/destroy', 'Slider\SliderController@destroy')->name('destroy');
+    });
+
 
     Route::group(['as' => 'category.', 'prefix' => 'category',], function () {
         Route::get('', 'ServiceCategory\ServiceCategoryController@index')->name('index');

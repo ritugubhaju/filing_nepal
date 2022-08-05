@@ -1,70 +1,67 @@
 @extends ('frontend.layouts.app')
 @section('content')
-    <!-- START SECTION COURSE DETAIL -->
-    <section>
-        <div class="container">
-            <div class="row">
-                @if ($services)
-                    <div class="col-lg-8">
-                        <div class="single_course">
 
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="overview" role="tabpanel"
-                                    aria-labelledby="overview-tab1">
-                                    <div class="border radius_all_5 tab_box">
-                                        @foreach ($services as $data)
-                                            <p>{{ $data->title }}</p>
-                                        @endforeach
-                                    </div>
-                                </div>
+    <div>
+        <div id="Detail_ban">
+            <div class="container">
+                <div class="banner_content">
 
-                            </div>
-                        </div>
-                    </div>
-                @endif
+                    <h2>Details</h2>
 
-                @if ($service_categories)
-                    <div class="col-lg-8">
-                        <div class="single_course">
+                    <p><span class=" tablinks serv_view" onclick="openCity(event, 'London')">Home </span>>Details</p>
 
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="overview" role="tabpanel"
-                                    aria-labelledby="overview-tab1">
-                                    <div class="border radius_all_5 tab_box">
-                                        @foreach ($service_categories as $key => $data)
-                                        @foreach ($data->categories as $service)
-                                            <div class=" s_cont ">
-                                                <h6 class="insleft_title"><i class="fa fa-book"
-                                                        aria-hidden="true"></i>{{ $service->title }}
-                                                </h6>
-                                                <p class="insleft_para pb-0 mb-0">{!! $service->content !!}</p>
-                                                <div class="insbtn">
-                                                    <div class="dbtn"><a
-                                                            href="{{ route('services.detail', $service->slug) }}">Details</a>
-                                                    </div>
-
-                                                    <button type="button" class="btn-servicemodal book"
-                                                        data-id="{{ $service->id }}">
-                                                        Book Services
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                @endif
-
+                </div>
+                <!-- <div class="banner_arrow">
+                                  <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                                </div> -->
             </div>
+        </div>
+        <div class="container py-5">
+            <div class="row gx-5">
+                @if ($service_categories)
+                    @foreach ($service_categories as $key => $data)
+                        @foreach ($data->categories as $service)
+                            <div class="col-lg-5">
+                                <img class="img-fluid" src="{{ asset($service->image_path) }}" alt="">
+                            </div>
+                            <div class="col-lg-7">
+                                <h1 class="rtitle_0 text-start">{{ $service->title }}</h1>
+                                <p class="d_para">{!! $service->content !!}</p>
+                                <div class="rsubmit ">
+                                    {{-- <button class="rsubmit_0 " type="submit">Book now</button> --}}
+                                    <button type="button" class="rsubmit_0 btn-servicemodal book"
+                                        data-id="{{ $service->id }}">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endforeach
+                @endif
+            </div>
+        </div>
 
+        <div class="container py-5">
+            <div class="row gx-5">
+                @if ($services)
+                    @foreach ($services as $data)
+                        <div class="col-lg-5">
+                            <img class="img-fluid" src="{{ asset($data->image_path) }}" alt="">
+                        </div>
+                        <div class="col-lg-7">
+                            <h1 class="rtitle_0 text-start">{{ $data->title }}</h1>
+                            <p class="d_para">{!! $data->content !!}</p>
+                            <div class="rsubmit ">
+                                {{-- <button class="rsubmit_0 " type="submit">Book now</button> --}}
+                                <button type="button" class="rsubmit_0 btn-servicemodal book"
+                                    data-id="{{ $data->id }}">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         </div>
-        </div>
-    </section>
-    <!-- END SECTION COURSE DETAIL -->
-    
+    </div>
 @endsection

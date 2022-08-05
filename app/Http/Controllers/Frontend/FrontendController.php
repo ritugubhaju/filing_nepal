@@ -11,6 +11,7 @@ use App\Modules\Models\Page\Page;
 use App\Modules\Models\RecentQuote\RecentQuote;
 use App\Modules\Models\Service\Service;
 use App\Modules\Models\ServiceCategory\ServiceCategory;
+use App\Modules\Models\Slider\Slider;
 use App\Modules\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,9 +25,11 @@ class FrontendController extends Controller
     {
         $services = Service::where('status', 1)->get();
         $clients = Client::where('status', 1)->latest()->take(6)->get();
+        $sliders = Slider::where('status', 1)->latest()->get();
         $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
 
-        return view('frontend.home',compact('services','clients','about'));
+
+        return view('frontend.home',compact('services','clients','about','sliders'));
     }
 
     public function searchDetails(Request $request){
@@ -119,7 +122,8 @@ class FrontendController extends Controller
 
     public function quote()
     {
-        return view('frontend.quote.index');
+        $services = Service::where('status', 1)->get();
+        return view('frontend.quote.index',compact('services'));
     }
 
     public function quoteDetails(Request $request)
