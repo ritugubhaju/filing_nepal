@@ -16,19 +16,7 @@
 
 
             <div class="col-lg-6 text-end">
-                @if (Auth::check())
-                    Welcome to Filling Nepal.
-                @else
-                    <button><a href="{{ route('register') }}" class="dbtn" class="help d-md-show"><i
-                                class="d-icon-user"></i>
-                            Register</a></button>
-                @endif
-                @if (Auth::check())
-                @else
-                    <button><a href="{{ route('client-login') }}" class="dbtn" class="help d-md-show"><i
-                                class="d-icon-user"></i>
-                            Login</a></button>
-                @endif
+                
 
                     @if (setting('facebook') != null)
                         <p class="top d-flex justify-content-end">
@@ -81,6 +69,13 @@
                         @endforeach
 
                     </ul>
+                    @if (Auth::check())
+                    Welcome
+                    @else
+                    <div class="register-btn" >
+                        <a class="tablinks" onclick="openCity(event, 'Register-now')" >  Register now</a>
+                    </div>
+                    @endif
 
                 </div>
             </div>
@@ -135,3 +130,4 @@
 </div>
 {{-- menu end --}}
 <div id="London" class="tabcontent">
+

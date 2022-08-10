@@ -32,7 +32,7 @@ class ServiceCategory extends Model
 
     public function categories()
     {
-        return $this->hasMany(Service::class,'category_id','id');
+        return $this->hasMany(Service::class,'category_id','id')->orderBy('created_at', 'desc');
     }
 
 }

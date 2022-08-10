@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendContactInfo;
 use App\Mail\SendQuoteInfo;
 use App\Modules\Models\Client\Client;
+use App\Modules\Models\Contact\Contact;
 use App\Modules\Models\Menu\Menu;
 use App\Modules\Models\Page\Page;
 use App\Modules\Models\RecentQuote\RecentQuote;
@@ -13,6 +14,7 @@ use App\Modules\Models\Service\Service;
 use App\Modules\Models\ServiceCategory\ServiceCategory;
 use App\Modules\Models\Slider\Slider;
 use App\Modules\Models\User;
+use App\Modules\Service\User\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -21,9 +23,15 @@ use Illuminate\Support\Facades\Password;
 
 class FrontendController extends Controller
 {
+    protected $user, $role, $permission;
+
+    function __construct(UserService $user)
+    {
+        $this->user = $user;
+    }
     public function homepage()
     {
-        $services = Service::where('status', 1)->get();
+        $services = Service::where('status', 1)->orderBy('created_at', 'desc')->get();
         $clients = Client::where('status', 1)->latest()->take(6)->get();
         $sliders = Slider::where('status', 1)->latest()->get();
         $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
@@ -101,7 +109,7 @@ class FrontendController extends Controller
             return redirect()->route('homepage');
 
         }else{
-            session()->flash('message', 'Invalid credentials');
+            Toastr()->error('Invalid credentials.','Error');
             return redirect()->back();
         }
     }
@@ -110,7 +118,7 @@ class FrontendController extends Controller
     public function services()
     {
 
-        $services = Service::where('status', 1)->get();
+        $services = Service::where('status', 1)->orderBy('created_at', 'desc')->get();
         return view('frontend.service.index',compact('services'));
     }
 
@@ -145,7 +153,8 @@ class FrontendController extends Controller
     public function client()
     {
         $clients = Client::where('status', 1)->latest()->take(6)->get();
-        return view('frontend.client.index',compact('clients'));
+        $clientsay = Client::where('status', 1)->latest()->first();
+        return view('frontend.client.index',compact('clients','clientsay'));
     }
 
     public function about()
@@ -164,8 +173,48 @@ class FrontendController extends Controller
     public function contactDetails(Request $request)
     {
         $data = $request->all();
+        $contact = new Contact();
+        $contact->name = request('name');
+        $contact->email = request('email');
+        $contact->phone = request('phone');
+        $contact->mobile = request('mobile');
+        $contact->subject = request('subject');
+        $contact->message = request('message');
+        $contact->save();
         Mail::to('ritu.gubhaju20@gmail.com')->send(new SendContactInfo($data));
         return redirect()->back()->withSuccess(trans('Contact Inquiry Send Successfully'));
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = $this->user->passwordUpdate($request->all());
+        if($user == true) {
+            Toastr()->success('Password has been Updated Successfully','Success');
+            return redirect()->route('homepage');
+        } else {
+            return redirect()->back();
+        }
+    }
+    public function page($slug = null)
+    {
+
+        if ($slug) {
+
+            $page = Page::whereSlug($slug)->where('status',1)->first();
+
+            if ($page == null) {
+                return view('frontend.errors.404');
+            }
+
+            if ($page) {
+                $pages = Page::whereIsPublished(1)->whereIsPrimary(0)->whereNotIn('id', [$page->id])->take(10)->inRandomOrder()->get();
+                if ($pages) {
+                    return view('frontend.page', compact('page', 'pages'));
+                }
+            } else {
+                return view('frontend.errors.404');
+            }
+        }
     }
 
 

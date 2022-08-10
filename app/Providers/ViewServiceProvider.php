@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $data['service_category'] = ServiceCategory::where('status', 1)->get();
+        $data['service_category'] = ServiceCategory::where('status', 1)->orderBy('created_at', 'desc')->get();
         $data['menus'] = Menu::where('status', 1)->orderBy('order','asc')->get();
         View::share($data);
     }

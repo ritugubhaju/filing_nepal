@@ -19,22 +19,8 @@
 
                                   <div class="client_left">
                                       <h2 class="rtitle_0">What Our Client Say</h2 class="rtitle_0">
-                                      <p class="d_para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
-                                          corrupti dolor ipsam?
-                                          Nesciunt quos
-                                          accusantium adipisci officia nulla eius distinctio eum eligendi ad ratione
-                                          deserunt rerum fugiat,
-                                          voluptatibus quis suscipit!
-                                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, animi ut
-                                          minus
-                                          exercitationem
-                                          aliquid labore iste corporis quisquam. Ipsum odit reiciendis quae magni debitis
-                                          tempore fuga
-                                          similique,
-                                          porro, quod quia nemo enim dolorum ea ex. Laborum ratione rerum officiis error
-                                          amet corporis maxime.
-                                          Facere nihil deserunt optio ipsum quidem nobis!</p>
-                                     
+                                      <p class="d_para">{!!$clientsay->content!!}</p>
+
                                   </div>
 
 

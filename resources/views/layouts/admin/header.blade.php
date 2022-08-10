@@ -5,10 +5,10 @@
             <div class="navbar-brand-box">
                 <a href="{{route('home')}}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{asset('images/logo.png')}}" alt="" height="50px">
+                        <img src="" alt="" height="50px">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('images/logo.png')}}" alt="" height="50px">
+                        <img src="{{ asset('images/fl-LOGO.png') }}" alt="" height="50px">
                     </span>
                 </a>
             </div>
@@ -18,7 +18,7 @@
             </button>
         </div>
 
-        <h2 style="color: white">New Project</h2>
+        <h2 style="color: white">Filing Nepal</h2>
 
         <div class="d-flex">
 

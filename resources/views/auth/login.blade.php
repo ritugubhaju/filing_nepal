@@ -80,13 +80,13 @@
                 <h3 class="text-center m-0">
                     <a href="index.html" class="logo logo-admin">
                         <img src="{{asset('images/logo.png')}}" height="80px" alt="logo" class="my-3">
-                        <p>New Project</p>
+                        <p>Filing Nepal</p>
                     </a>
                 </h3>
 
                 <div class="px-2 mt-2">
                     <h4 class="text-muted font-size-18 mb-2 text-center">Welcome Back !</h4>
-                    <p class="text-muted text-center">Sign in to continue to HRIS</p>
+                    <p class="text-muted text-center">Sign in to continue</p>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

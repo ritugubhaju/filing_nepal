@@ -77,6 +77,13 @@
                 </li>
 
 
+                <li>
+                    <a href="{{ route('contact.index')}}" aria-expanded="false">
+                        <i class="fa fa-quote-left"></i></i> Contact Details
+                    </a>
+                </li>
+
+
             </ul>
         </div>
         <!-- Sidebar -->

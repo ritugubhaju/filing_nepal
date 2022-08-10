@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                2018 - <script>document.write(new Date().getFullYear())</script> © New Project
+                 <script>document.write(new Date().getFullYear())</script> © Filing Nepal
             </div>
         </div>
     </div>

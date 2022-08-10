@@ -148,6 +148,10 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::post('', 'Booking\BookingController@store')->name('store');
     });
 
+    Route::group(['as' => 'contact.', 'prefix' => 'contact',], function () {
+        Route::get('', 'Contact\ContactController@index')->name('index');
+    });
+
     Route::get('setting', 'Setting\SettingController@index')->name('setting.index');
     Route::put('setting/update', 'Setting\SettingController@update')->name('setting.update');
 
@@ -162,10 +166,14 @@ Route::get('recent-quote', [App\Http\Controllers\Frontend\FrontendController::cl
 Route::post('quote-details', [App\Http\Controllers\Frontend\FrontendController::class, 'quoteDetails'])->name('quote-details');
 Route::get('clients', [App\Http\Controllers\Frontend\FrontendController::class, 'client'])->name('clients');
 Route::get('about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
-Route::get('contact', [App\Http\Controllers\Frontend\FrontendController::class, 'contact'])->name('contact');
+Route::get('contacts', [App\Http\Controllers\Frontend\FrontendController::class, 'contact'])->name('contacts');
 Route::post('contact-details', [App\Http\Controllers\Frontend\FrontendController::class, 'contactDetails'])->name('contact-details');
 Route::get('search/', [App\Http\Controllers\Frontend\FrontendController::class, 'searchDetails'])->name('search-details');
-Route::get('clientregister', [App\Http\Controllers\Frontend\FrontendController::class, 'register'])->name('register');
+//Route::get('clientregister', [App\Http\Controllers\Frontend\FrontendController::class, 'register'])->name('register');
 Route::post('register-details', [App\Http\Controllers\Frontend\FrontendController::class, 'registerDetails'])->name('register-details');
-Route::get('client-login', [App\Http\Controllers\Frontend\FrontendController::class, 'clientLogin'])->name('client-login');
+//Route::get('client-login', [App\Http\Controllers\Frontend\FrontendController::class, 'clientLogin'])->name('client-login');
 Route::post('login-details', [App\Http\Controllers\Frontend\FrontendController::class, 'loginDetails'])->name('login-details');
+Route::post('newsletter', [App\Http\Controllers\Newsletter\NewsletterController::class, 'store'])->name('newsletter');
+
+Route::get('{page}', [App\Http\Controllers\Frontend\FrontendController::class, 'page'])->name('page.detail');
+Route::post('update-password', [App\Http\Controllers\Frontend\FrontendController::class, 'updatePassword'])->name('updatePassword');

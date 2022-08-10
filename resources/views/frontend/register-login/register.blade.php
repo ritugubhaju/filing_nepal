@@ -34,9 +34,9 @@
                         <input type="text"  name="company_name" class="form-control" placeholder="Company Name">
                     </div>
 
-                    <div class="col-12 ">
-                       <button class=" float-end btn-login">Submit</button>
-                    </div>
+                    <div class="register-submit mt-4 ">
+                        <button class="register-btn">Submit</button>
+                       </div>
                 </div>
                 </form>
 

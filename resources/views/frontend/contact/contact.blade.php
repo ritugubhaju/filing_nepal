@@ -25,7 +25,7 @@
                                 <div class="col-lg-6">
                                     <div class="hinput">
                                         <h5>Full Name</h5>
-                                        <input type="text" name="name" required class="rinput">
+                                        <input type="text" required name="name" required class="rinput">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
