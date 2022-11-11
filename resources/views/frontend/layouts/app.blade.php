@@ -19,9 +19,11 @@
 
 <body>
 
+    {{-- <img class="home_slider" src="{{ asset('images/filing nepal.png') }} " alt="..."> --}}
+
     @include('frontend.layouts.partials.header')
 
-    @yield('content')
+   @yield('content')
 
   @include('frontend.layouts.partials.footer')
 
@@ -84,6 +86,8 @@
 
     })
 </script>
+
+
 
 
 </body>

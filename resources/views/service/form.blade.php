@@ -13,10 +13,10 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="category_id" class="col-form-label pt-0">Category</label>
-                                <select name="category_id" class="form-control" required id="">
+                                <select name="category_id" class="form-control category_id" required id="">
                                 <option value="">Select Category</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}" @if(isset($category_search)) @if($category_search->id == $category->id) selected @endif @endif>{{$category->title}}</option>
@@ -26,7 +26,22 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="subcategory_id" class="col-form-label pt-0">Sub Category</label>
+                                <select name="subcategory_id" class="form-control subcategory_class" required id="">
+                                <option value="">Select Sub Category</option>
+                                        @foreach($subcategories as $subcategory)
+                                            <option value="{{$subcategory->id}}" @if(isset($subcategory_search)) @if($subcategory_search->id == $subcategory->id) selected @endif @endif>{{$subcategory->title}}</option>
+                                        @endforeach
+                                </select>
+                                <span id="textarea1-error" class="text-danger">{{ $errors->first('subcategory_id') }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
                             <div class="form-group ">
                                 <label for="title" class="col-form-label pt-0">Service Name</label>
                                 <div class="">
@@ -37,7 +52,7 @@
 
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="form-group ">
                                 <label for="price" class="col-form-label pt-0">Service Price</label>
                                 <div class="">
@@ -118,5 +133,33 @@
         $(document).ready(function () {
             $('.dropify').dropify();
         });
+    </script>
+
+    <script>
+         $('.category_id').change(function(e){
+            e.preventDefault();
+            var category_id = $(this).val();
+            var body;
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo e(route('service.servicecategoryajax')); ?>',
+                data: {
+                    _token: $("meta[name='csrf-token']").attr('content'),
+                    category_id: category_id,
+                },
+                success:function(response){
+                    if(typeof(response) != "object"){
+                        response = JSON.parse(response);
+                    }
+                    console.log(response.data);
+                    if(response.data){
+                        $.each(response.data, function(key, subcategory){
+                            body += "<option value='"+subcategory['id']+"'>"+subcategory['title']+"</option>";
+                        });
+                        $('.subcategory_class').html(body);
+                    }
+                }
+            })
+        })
     </script>
 @endsection

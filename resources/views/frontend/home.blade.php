@@ -21,12 +21,6 @@
                                     <option></option>
                                     @foreach ($service_category as $category)
                                         <option value="{{ $category->slug }}">{{ $category->title }}</option>
-                                        @foreach ($services as $service)
-                                            @if ($category->id == $service->category->id)
-                                                <option value="{{ $service->slug }}">{{ $service->title }}</option>
-                                                </a>
-                                            @endif
-                                        @endforeach
                                     @endforeach
                                 </select>
                                 <button class="seeks" type="submit">Seek Services</button>
@@ -208,7 +202,7 @@
         <div class="container ">
             <h2 class="px-5 rtitle_0">Our Clients</h2>
             <div class="row align-items-center">
-                <div class="col-lg-5 d-flex align-items-center">
+                <div class="col-lg-5 ">
                     <div id="tes_slider">
                         <div id="carouselExampleDark" class="carousel  slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
@@ -229,7 +223,10 @@
                                         <h6 class="test_icon">{{ $data->position }} at {{ $data->company_name }} <i
                                                 class="fa fa-twitter" aria-hidden="true"></i>
                                         </h6>
-                                        <p>{!! $data->content !!}</p>
+
+                                        <p>{!! Str::limit($data->content, 150) !!}</p>
+
+
                                     </div>
                                 @endforeach
                             </div>
@@ -269,6 +266,29 @@
             </div>
         </div>
     </section>
+    </div>
+
+
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-12  ">
+                <div class="owl-carousel ">
+                    @foreach($categories as $data)
+                    <div class="  slider_1 play ">
+                        <img class="img-fluid  home_slider1" src="https://img.freepik.com/premium-photo/businessman-hands-working-stacks-documents-paper-files_218381-9460.jpg?size=626&ext=jpg" alt="">
+                        <div class="service-slider-content">
+                            <a onclick="openCity(event, 'Paris')" class="slider-link">{{$data->title}}</a>
+                        </div>
+                    </div>
+                    @endforeach
+
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
 
 

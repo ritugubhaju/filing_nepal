@@ -2,6 +2,22 @@
 @section('content')
 
     <!-- about  -->
+    <div>
+        <div id="fa_banner">
+          <div class="container">
+            <img class="img-fluid" src="{{ asset($image) }}" alt="">
+            <div class="banner_content">
+
+              <h2>About Filing Nepal</h2>
+
+              <p><a href="" class="text-light text-decoration-none">Home</a>>About</p>
+
+            </div>
+            <!-- <div class="banner_arrow">
+              <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            </div> -->
+          </div>
+        </div>
     <section id="abt_more">
         <div class="container">
             <div class="row">

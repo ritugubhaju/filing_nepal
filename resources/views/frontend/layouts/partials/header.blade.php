@@ -16,7 +16,7 @@
 
 
             <div class="col-lg-6 text-end">
-                
+
 
                     @if (setting('facebook') != null)
                         <p class="top d-flex justify-content-end">
@@ -52,16 +52,19 @@
             <div class="tab">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" class="tablinks"
-                                onclick="openCity(event, 'Paris')">
-                                Services
-                            </a>
 
-                        </li>
-                        @foreach ($menus as $menu)
-                            <li class="nav-item">
+                        @foreach ($menus as $key => $menu)
+                            @if($key ==2)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle refreshPage" href="{{ route('services')}}" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false" class="tablinks"
+                                        onclick="openCity(event, 'Paris')">
+                                        Services
+                                    </a>
+
+                                </li>
+                            @endif
+                            <li  class="nav-item {{  (Request::is($menu->url)) ? 'active' : '' }}">
                                 <a class="nav-link" aria-current="page" href="{{ url($menu->url) }}" class="tablinks">
                                     {{ $menu->name }}
                                 </a>
@@ -83,8 +86,9 @@
     </nav>
 </section>
 
+
 {{-- menu start --}}
-<div id="Paris" class="tabcontent">
+ <div id="Paris" class="tabcontent">
     <div class="container py-5">
         <div class="service-item">
             <ul class="nav nav-pills service-item-left" id="myTab">

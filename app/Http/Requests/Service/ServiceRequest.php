@@ -36,6 +36,7 @@ class ServiceRequest extends FormRequest
 
         $data = [
             'category_id'               => $this->get('category_id'),
+            'subcategory_id'               => $this->get('subcategory_id'),
             'title'                  => $this->get('title'),
             'content'   => $this->get('content'),
             'price'   => $this->get('price'),

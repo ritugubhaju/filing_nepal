@@ -106,6 +106,15 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::get('category/{id}/destroy', 'ServiceCategory\ServiceCategoryController@destroy')->name('destroy');
     });
 
+    Route::group(['as' => 'subcategory.', 'prefix' => 'subcategory',], function () {
+        Route::get('', 'SubCategory\SubCategoryController@index')->name('index');
+        Route::get('create', 'SubCategory\SubCategoryController@create')->name('create');
+        Route::post('', 'SubCategory\SubCategoryController@store')->name('store');
+        Route::get('{subcategory}/edit', 'SubCategory\SubCategoryController@edit')->name('edit');
+        Route::put('{subcategory}', 'SubCategory\SubCategoryController@update')->name('update');
+        Route::get('subcategory/{id}/destroy', 'SubCategory\SubCategoryController@destroy')->name('destroy');
+    });
+
     Route::group(['as' => 'service.', 'prefix' => 'service',], function () {
         Route::get('', 'Service\ServiceController@index')->name('index');
         Route::get('create', 'Service\ServiceController@create')->name('create');
@@ -113,6 +122,7 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
         Route::get('{service}/edit', 'Service\ServiceController@edit')->name('edit');
         Route::put('{service}', 'Service\ServiceController@update')->name('update');
         Route::get('service/{id}/destroy', 'Service\ServiceController@destroy')->name('destroy');
+        Route::post('servicecategory', 'Service\ServiceController@serviceCategoryAjax')->name('servicecategoryajax');
     });
 
     Route::group(['as' => 'client.', 'prefix' => 'client',], function () {
@@ -145,7 +155,6 @@ Route::group(['middleware' => 'auth','namespace' => 'App\Http\Controllers'], fun
     Route::group(['as' => 'booking.', 'prefix' => 'booking',], function () {
         Route::get('', 'Booking\BookingController@index')->name('index');
         Route::get('quote', 'Booking\BookingController@quote')->name('quote');
-        Route::post('', 'Booking\BookingController@store')->name('store');
     });
 
     Route::group(['as' => 'contact.', 'prefix' => 'contact',], function () {
@@ -164,6 +173,7 @@ Route::get('services', [App\Http\Controllers\Frontend\FrontendController::class,
 Route::get('servicesdetail/{services}', [App\Http\Controllers\Frontend\FrontendController::class, 'servicesDetails'])->name('services.detail');
 Route::get('recent-quote', [App\Http\Controllers\Frontend\FrontendController::class, 'quote'])->name('recent-quote');
 Route::post('quote-details', [App\Http\Controllers\Frontend\FrontendController::class, 'quoteDetails'])->name('quote-details');
+Route::post('booking-details', [App\Http\Controllers\Frontend\FrontendController::class, 'bookingDetails'])->name('booking.store');
 Route::get('clients', [App\Http\Controllers\Frontend\FrontendController::class, 'client'])->name('clients');
 Route::get('about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
 Route::get('contacts', [App\Http\Controllers\Frontend\FrontendController::class, 'contact'])->name('contacts');

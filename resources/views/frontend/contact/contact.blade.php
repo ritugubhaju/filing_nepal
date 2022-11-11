@@ -4,6 +4,8 @@
     <!-- contact start  -->
     <div>
         <div id="cbanner">
+
+            <img class="img-fluid" src="{{ asset($image) }}" alt="">
             <div class="cb_title">
                 <h2>Contact Now</h2>
                 <p><a href="{{route('homepage')}}">Home</a>>Contact Us</p>

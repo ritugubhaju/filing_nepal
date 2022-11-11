@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-@section('title', 'New Project')
+@section('title', 'Filing Nepal')
 
 
 @section('page-specific-styles')

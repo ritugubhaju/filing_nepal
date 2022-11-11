@@ -3,6 +3,7 @@
 namespace App\Modules\Models\Service;
 
 use App\Modules\Models\ServiceCategory\ServiceCategory;
+use App\Modules\Models\SubCategory\SubCategory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -21,7 +22,7 @@ class Service extends Model
         ];
     }
 
-    protected $fillable = array('category_id','title','slug','content','price','image','status',
+    protected $fillable = array('category_id','subcategory_id','title','slug','content','price','image','status',
     );
 
     protected $casts = [
@@ -44,6 +45,11 @@ class Service extends Model
     public function category()
     {
         return $this->belongsTo(ServiceCategory::class,'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class,'subcategory_id');
     }
 
 }

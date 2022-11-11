@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Service\ServiceRequest;
 use App\Modules\Models\Service\Service;
 use App\Modules\Models\ServiceCategory\ServiceCategory;
+use App\Modules\Models\SubCategory\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,10 +14,11 @@ class ServiceController extends Controller
 {
     protected $service,$category;
 
-    function __construct(Service $service,ServiceCategory $category)
+    function __construct(Service $service,ServiceCategory $category, SubCategory $subcategory)
     {
         $this->service = $service;
         $this->category = $category;
+        $this->subcategory = $subcategory;
     }
     public function index()
     {
@@ -31,7 +33,8 @@ class ServiceController extends Controller
     public function create()
     {
         $categories = $this->category->get();
-        return view('service.create',compact('categories'));
+        $subcategories = $this->subcategory->get();
+        return view('service.create',compact('categories','subcategories'));
     }
 
     /**
@@ -58,11 +61,15 @@ class ServiceController extends Controller
     {
         $category_search = ServiceCategory::find($service->category_id);
         $categories = $this->category->get();
-        return view('service.edit', compact('service','categories','category_search'));
+
+        $subcategory_search = SubCategory::find($service->subcategory_id);
+        $subcategories = SubCategory::where('category_id',$category_search->id)->get();
+        return view('service.edit', compact('service','categories','category_search','subcategory_search','subcategories'));
     }
 
     public function update(ServiceRequest $request, Service $service)
     {
+        //dd($request->all());
         if ($service->update($request->data())) {
             $service->fill([
                 'slug' => Str::slug($request->title),
@@ -81,7 +88,11 @@ class ServiceController extends Controller
     {
         $service = $this->service->find($id);
         $image_path = public_path().'/uploads/service/'.$service->image;
-        unlink($image_path);
+        if($service->image)
+        {
+            unlink($image_path);
+
+        }
         $service->delete();
         Toastr()->success('Service Deleted Successfully.','Success');
         return redirect()->route('service.index');
@@ -123,6 +134,16 @@ class ServiceController extends Controller
         } catch (\Exception $e) {
 
         }
+    }
+
+    public function serviceCategoryAjax(Request $request)
+    {
+        $service = $this->subcategory->where('category_id',$request->category_id)->get();
+        return response()->json([
+            'data' => $service,
+            'status' => true,
+            'message' => "service Fetched Successfully."
+        ]);
     }
 }
 

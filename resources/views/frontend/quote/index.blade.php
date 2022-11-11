@@ -5,7 +5,7 @@
     <!-- requestquote start  -->
     <div>
         <div id="sbanner">
-
+            <img class="img-fluid" src="{{ asset($image) }}" alt="">
             <div class="cb_title">
                 <h2>Quotation</h2>
                 <a href="{{route('homepage')}}" class="tablinks" onclick="openCity(event, 'London' )">Home</a>>Reqest Quote

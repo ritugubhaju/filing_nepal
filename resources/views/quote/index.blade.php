@@ -22,12 +22,14 @@
                         <tr>
                             <th>S.No.</th>
                             <th>Full Name</th>
+                            <th>Email</th>
                             <th>Phone</th>
                             <th>Service</th>
                             <th>Organization</th>
                         </tr>
                         </thead>
                         <tbody>
+                            @each('quote.table', $quotes, 'quote')
                         </tbody>
                     </table>
                 </div>

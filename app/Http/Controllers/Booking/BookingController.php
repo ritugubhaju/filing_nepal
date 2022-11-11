@@ -6,16 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Booking\BookingRequest;
 use App\Mail\SendQuoteInfo;
 use App\Modules\Models\Booking\Booking;
+use App\Modules\Models\RecentQuote\RecentQuote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
     protected $booking;
+    protected $quote;
 
-    function __construct(Booking $booking)
+    function __construct(Booking $booking,RecentQuote $quote)
     {
         $this->booking = $booking;
+        $this->quote = $quote;
     }
     public function index()
     {
@@ -27,11 +30,14 @@ class BookingController extends Controller
 
     public function store(BookingRequest $request)
     {
+
         $data = $request->all();
         $book = new Booking();
         $book->service_id = request('service_id');
         $book->company_name = request('company_name');
-        $book->company_address = request('company_address');
+        if($request->company_address){
+             $book->company_address = request('company_address');
+        }
         $book->name = request('name');
         $book->email = request('email');
         $book->phone = request('phone');
@@ -44,6 +50,7 @@ class BookingController extends Controller
 
     public function quote()
     {
-        return view('quote.index');
+        $quotes = $this->quote->orderBy('created_at', 'desc')->get();
+        return view('quote.index',compact('quotes'));
     }
 }

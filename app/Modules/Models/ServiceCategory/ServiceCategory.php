@@ -9,6 +9,8 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class ServiceCategory extends Model
 {
     use Sluggable;
+    protected $path ='uploads/category';
+
 
     public function sluggable(){
         return [
@@ -18,7 +20,7 @@ class ServiceCategory extends Model
         ];
     }
 
-    protected $fillable = array('title','slug','status',
+    protected $fillable = array('title','slug','image','status',
     );
 
     protected $casts = [
@@ -28,6 +30,14 @@ class ServiceCategory extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    
+    function getImagePathAttribute(){
+        return $this->path.'/'. $this->image;
+    }
+
+    function getThumbnailPathAttribute(){
+        return $this->path.'/thumb/'. $this->image;
     }
 
     public function categories()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Mail\SendContactInfo;
 use App\Mail\SendQuoteInfo;
+use App\Modules\Models\Booking\Booking;
 use App\Modules\Models\Client\Client;
 use App\Modules\Models\Contact\Contact;
 use App\Modules\Models\Menu\Menu;
@@ -35,18 +36,23 @@ class FrontendController extends Controller
         $clients = Client::where('status', 1)->latest()->take(6)->get();
         $sliders = Slider::where('status', 1)->latest()->get();
         $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
+        $categories = ServiceCategory::where('status', 1)->orderBy('created_at', 'desc')->get();
 
 
-        return view('frontend.home',compact('services','clients','about','sliders'));
+        return view('frontend.home',compact('services','clients','about','sliders','categories'));
     }
 
     public function searchDetails(Request $request){
         $search = $request->search;
 
         $service_categories = ServiceCategory::where('slug',$search)->where('status', 1)->get();
+        foreach($service_categories as $data)
+        {
+            $title = $data->title;
+        }
         $services = Service::where('slug',$search)->where('status', 1)->get();
 
-        return view('frontend.service.servicecategory',compact('service_categories','services'));
+        return view('frontend.service.servicecategory',compact('service_categories','services','title'));
 
 
     }
@@ -130,8 +136,13 @@ class FrontendController extends Controller
 
     public function quote()
     {
+        $quotes = Page::where('slug','recent-quote')->where('status', 1)->get();
+        foreach($quotes as $data)
+        {
+            $image = $data->image_path;
+        }
         $services = Service::where('status', 1)->get();
-        return view('frontend.quote.index',compact('services'));
+        return view('frontend.quote.index',compact('services','image'));
     }
 
     public function quoteDetails(Request $request)
@@ -150,6 +161,26 @@ class FrontendController extends Controller
         return redirect()->back();
     }
 
+    public function bookingDetails(Request $request)
+    {
+
+        $data = $request->all();
+        $book = new Booking();
+        $book->service_id = request('service_id');
+        $book->company_name = request('company_name');
+        if($request->company_address){
+             $book->company_address = request('company_address');
+        }
+        $book->name = request('name');
+        $book->email = request('email');
+        $book->phone = request('phone');
+        $book->mobile = request('mobile');
+        $book->save();
+        Mail::to('ritu.gubhaju20@gmail.com')->send(new SendQuoteInfo($data));
+        Toastr()->success('The information has been submitted successfully.','Success');
+        return redirect()->back();
+    }
+
     public function client()
     {
         $clients = Client::where('status', 1)->latest()->take(6)->get();
@@ -160,14 +191,24 @@ class FrontendController extends Controller
     public function about()
     {
         $about = Page::where('slug','about-filing-nepal')->where('status', 1)->get();
+        $abouts = Page::where('slug','about-image')->where('status', 1)->get();
+        foreach($abouts as $data)
+        {
+            $image = $data->image_path;
+        }
         $mission = Page::where('slug','mission')->where('status', 1)->get();
         $vision = Page::where('slug','vision')->where('status', 1)->get();
-        return view('frontend.about',compact('about','mission','vision'));
+        return view('frontend.about',compact('about','mission','vision','image'));
     }
 
     public function contact()
     {
-        return view('frontend.contact.contact');
+        $contacts = Page::where('slug','contact-us')->where('status', 1)->get();
+        foreach($contacts as $data)
+        {
+            $image = $data->image_path;
+        }
+        return view('frontend.contact.contact',compact('image'));
     }
 
     public function contactDetails(Request $request)

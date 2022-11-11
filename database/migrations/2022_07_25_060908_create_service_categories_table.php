@@ -17,6 +17,7 @@ class CreateServiceCategoriesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('image')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
